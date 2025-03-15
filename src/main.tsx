@@ -1,0 +1,32 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import {
+	createBrowserRouter,
+	createRoutesFromElements,
+	Route,
+	RouterProvider,
+} from "react-router-dom";
+import OnBoarding from "./on-boarding/OnBoarding";
+import Maps from "./maps/Maps";
+
+const rootEl = document.getElementById("root");
+
+const router = createBrowserRouter(
+	createRoutesFromElements(
+		<Route>
+			<Route path="/" element={<App />} />
+			<Route path="on-boarding" element={<OnBoarding />} />
+			<Route path="maps" element={<Maps />} />
+		</Route>,
+	),
+);
+
+if (rootEl) {
+	const root = ReactDOM.createRoot(rootEl);
+	root.render(
+		<React.StrictMode>
+			<RouterProvider router={router} />
+		</React.StrictMode>,
+	);
+}

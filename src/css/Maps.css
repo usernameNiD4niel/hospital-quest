@@ -1,0 +1,75 @@
+/* Dust Particles (No changes from before) */
+.dust-particle {
+	position: absolute;
+	background-color: black;
+	/* Semi-transparent grey */
+	border-radius: 50%;
+	/* Make it circular */
+	opacity: 0;
+	pointer-events: none;
+	/* Make sure it doesn't interfere with clicks */
+	animation: wind 10s linear infinite;
+	/* Adjust animation duration */
+}
+
+@keyframes wind {
+	0% {
+		transform: translateX(0) translateY(0);
+		opacity: 0;
+	}
+
+	20% {
+		opacity: 0.5;
+	}
+
+	80% {
+		opacity: 0.5;
+	}
+
+	100% {
+		transform: translateX(20vw) translateY(10vh);
+		/* Adjust the distance */
+		opacity: 0;
+	}
+}
+
+/* Cloud Particles */
+.cloud-particle {
+	position: absolute;
+	/* background-color: rgba(255, 255, 255, 0.2); */
+	/* Light grey/white, adjust alpha */
+	background-size: cover;
+	/* Cover the div */
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	/* Optional: Rounded clouds */
+	opacity: 0;
+	/* Start invisible */
+	pointer-events: none;
+	/* Don't interfere with clicks */
+	animation: cloud-move 60s linear infinite;
+	/* Longer animation */
+	z-index: 10;
+	/* Make sure clouds are above the map, but below department markers */
+}
+
+@keyframes cloud-move {
+	0% {
+		transform: translateX(0);
+		opacity: 0;
+	}
+
+	10% {
+		opacity: 0.4;
+	}
+
+	90% {
+		opacity: 0.4;
+	}
+
+	100% {
+		transform: translateX(100vw);
+		/* Move across the entire screen width */
+		opacity: 0;
+	}
+}
