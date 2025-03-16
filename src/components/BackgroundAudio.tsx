@@ -1,8 +1,8 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 function BackgroundAudio() {
 	const audioRef = useRef<HTMLAudioElement>(null);
-	
+
 	// Play audio on first user interaction (required by browsers for autoplay)
 	// useEffect(() => {
 	// 	const playAudio = () => {
