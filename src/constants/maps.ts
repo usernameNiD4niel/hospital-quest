@@ -1,13 +1,13 @@
 import { DepartmentType } from "../types";
 
 export const ER_COOR_CLASS =
-	"absolute z-10 top-[calc(100vh-(50vh+60px))] md:top-[calc(100vh-(50vh+90px))] right-[15vw] md:right-[16vw]"; // Emergency Room
+	"absolute z-10 top-[calc(100vh-(48vh+45px))] md:top-[calc(100vh-(25vh+60px))] right-[39vw] md:right-[35vw]"; // Emergency Room
 export const OR_COOR_CLASS =
-	"absolute z-10 top-[calc(100vh-(50vh-10px))] md:top-[calc(100vh-(50vh-50px))] right-[27vw] md:right-[25vw]"; // Operating Room
+	"absolute z-10 top-[calc(100vh-(42vh-10px))] md:top-[calc(100vh-(50vh-60px))] right-[60vw] md:right-[25vw]"; // Operating Room
 export const DR_OB_COOR_CLASS =
-	"absolute z-10 bottom-[39vh] landscape:bottom-[16vh] md:bottom-[16vh] right-[calc(53vw+10px)] md:right-[calc(53vw+10px)]"; // Delivery Room/Obgyne
+	"absolute z-10 bottom-[23vh] md:bottom-[21vh] right-[calc(63vw+30px)] md:right-[52vw]"; // Delivery Room/Obgyne
 export const OPD_COOR_CLASS =
-	"absolute z-10 bottom-[43vh] left-[calc(20vw+10px)]"; // Out-patient Department
+	"absolute z-10 bottom-[31vh] md:bottom-[32vh] left-[45vw] md:left-[calc(30vw+10px)]"; // Out-patient Department
 export const SW_COOR_CLASS = "absolute z-10 top-[19vh] right-[27vw]"; // Surgical Wards
 export const LAB_COOR_CLASS = "absolute z-10 top-[5vh] right-[48vw]"; // Laboratory
 export const MW_COOR_CLASS = "absolute z-10 top-[19vh] left-[32vw]"; // Medical Ward

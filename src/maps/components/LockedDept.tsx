@@ -15,7 +15,7 @@ function LockedDept({ department }: Props) {
 				height={100}
 				className="w-[20px] md:w-[25px] h-auto"
 			/>
-			<p className="bg-zinc-500 text-white px-2 rounded-md hidden md:block">
+			<p className="bg-zinc-500 text-white px-2 rounded-md hidden md:block drop-shadow-2xl">
 				{department.name}
 			</p>
 		</div>

@@ -88,7 +88,7 @@ function Maps() {
 				alt="Game map"
 				width={2200}
 				height={2200}
-				className="h-screen w-auto md:hidden"
+				className="h-screen w-screen md:hidden"
 			/>
 			{/* <TransformWrapper
 				initialScale={1}
@@ -161,7 +161,7 @@ function Maps() {
 			<Coordinate />
 
 			{/* Optional: Overlay to darken/tint the background */}
-			<div className="fixed inset-0 bg-black opacity-10"></div>
+			{/* <div className="fixed inset-0 bg-black opacity-10"></div> */}
 		</div>
 	);
 }

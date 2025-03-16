@@ -23,7 +23,7 @@ function ActiveDept({ department, profile }: Props) {
 					alt={profile.alt}
 					width={40}
 					height={40}
-					className="w-8 md:w-16 h-auto rounded-full shadow-lg border-2 border-green-600"
+					className="w-8 h-auto rounded-full shadow-lg border-2 border-green-600"
 				/>
 
 				{/* Expanding Pulse Effect */}
