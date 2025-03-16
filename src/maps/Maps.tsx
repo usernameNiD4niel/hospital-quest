@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import "../css/Maps.css";
-import Reset from "../../public/reset-svgrepo-com.svg";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import Coordinate from "./components/Coordinate";
 
 // Cloud Particle Component
@@ -74,11 +72,25 @@ function Maps() {
 	return (
 		<div className="w-full flex items-center justify-center h-screen relative overflow-hidden bg-gradient-to-br from-[#9EC2C0] to-[#6AA6BD] flex-col">
 			{/* For Desktop */}
-			<div
-				style={{ backgroundImage: "url(/map2.webp)" }}
+			{/* <div
+				style={{ backgroundImage: "url(/src/assets/farm-map-web.webp)" }}
 				className="fixed inset-0 md:bg-cover bg-center bg-no-repeat hidden md:block"
+			/> */}
+			<img
+				src="/src/assets/farm-map-web.webp"
+				alt="Farm map image"
+				width={2500}
+				height={2500}
+				className="w-screen h-screen hidden md:block"
 			/>
-			<TransformWrapper
+			<img
+				src="/farm-map.webp"
+				alt="Game map"
+				width={2200}
+				height={2200}
+				className="h-screen w-auto md:hidden"
+			/>
+			{/* <TransformWrapper
 				initialScale={1}
 				minScale={1}
 				maxScale={5}
@@ -86,7 +98,6 @@ function Maps() {
 			>
 				{({ zoomIn, zoomOut, resetTransform }) => (
 					<>
-						{/* Optional Zoom Controls */}
 						<div className="fixed bottom-4 right-4 z-10 space-x-2 flex flex-col space-y-2 justify-end md:hidden">
 							<button
 								onClick={() => zoomIn()}
@@ -113,7 +124,7 @@ function Maps() {
 
 						<TransformComponent>
 							<img
-								src="/map2.webp"
+								src="/farm-map.webp"
 								alt="Game map"
 								width={2200}
 								height={2200}
@@ -122,7 +133,7 @@ function Maps() {
 						</TransformComponent>
 					</>
 				)}
-			</TransformWrapper>
+			</TransformWrapper> */}
 			{/* <div
 				style={{ backgroundImage: "url(/map3.webp)" }}
 				className="fixed inset-0 md:bg-cover bg-center bg-no-repeat hidden md:block"
