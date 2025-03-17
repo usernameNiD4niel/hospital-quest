@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../css/Maps.css";
 import Coordinate from "./components/Coordinate";
+import FarmMapWeb from "../assets/farm-map-web.webp";
 
 // Cloud Particle Component
 interface CloudParticleProps {
@@ -77,7 +78,7 @@ function Maps() {
 				className="fixed inset-0 md:bg-cover bg-center bg-no-repeat hidden md:block"
 			/> */}
 			<img
-				src="/src/assets/farm-map-web.webp"
+				src={FarmMapWeb}
 				alt="Farm map image"
 				width={2500}
 				height={2500}

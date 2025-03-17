@@ -8,9 +8,9 @@ export const DR_OB_COOR_CLASS =
 	"absolute z-10 bottom-[23vh] md:bottom-[21vh] right-[calc(63vw+30px)] md:right-[52vw]"; // Delivery Room/Obgyne
 export const OPD_COOR_CLASS =
 	"absolute z-10 bottom-[31vh] md:bottom-[32vh] left-[45vw] md:left-[calc(30vw+10px)]"; // Out-patient Department
-export const SW_COOR_CLASS = "absolute z-10 top-[19vh] right-[27vw]"; // Surgical Wards
-export const LAB_COOR_CLASS = "absolute z-10 top-[5vh] right-[48vw]"; // Laboratory
-export const MW_COOR_CLASS = "absolute z-10 top-[19vh] left-[32vw]"; // Medical Ward
+export const SW_COOR_CLASS = "absolute z-10 top-[55vh] md:top-[51vh] right-[28vw] md:right-[53vw]"; // Surgical Wards
+export const LAB_COOR_CLASS = "absolute z-10 top-[49vh] md:top-[38vh] right-[69vw] md:right-[62vw]"; // Laboratory
+export const MW_COOR_CLASS = "absolute z-10 top-[19vh] md:left-[32vw]"; // Medical Ward
 
 export const MAPS: DepartmentType[] = [
 	{
