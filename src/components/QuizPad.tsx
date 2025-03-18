@@ -18,7 +18,7 @@ function QuizPad() {
 	};
 
 	return (
-		<div>
+		<div className="w-full flex flex-col items-center justify-center">
 			<div className="flex items-center gap-x-2 mt-6 justify-center w-full relative">
 				<div className={`flex items-center gap-x-2`}>
 					{answer.map((i, index) => (
@@ -245,11 +245,10 @@ function Input({
 
 	return (
 		<button
-			className={`border-zinc-500 border text-purple-500 w-16 h-16 rounded-md font-semibold text-xl hover:cursor-pointer ${
-				selectedText
-					? "bg-purple-500 text-white border-0"
-					: "bg-white border-2 border-purple-500"
-			}`}
+			className={`border-zinc-500 border text-purple-500 w-16 h-16 rounded-md font-semibold text-xl hover:cursor-pointer ${selectedText
+				? "bg-purple-500 text-white border-0"
+				: "bg-white border-2 border-purple-500"
+				}`}
 			onClick={onRemove}>
 			{selectedText}
 		</button>

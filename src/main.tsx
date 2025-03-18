@@ -10,6 +10,7 @@ import {
 import OnBoarding from "./on-boarding/OnBoarding";
 import Maps from "./maps/Maps";
 import Layout from "./Layout";
+import Map from "./maps/map/Map";
 
 const rootEl = document.getElementById("root");
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
 			<Route index element={<App />} />
 			<Route path="on-boarding" element={<OnBoarding />} />
 			<Route path="maps" element={<Maps />} />
+			<Route path="maps/:department" element={<Map />} />
 		</Route>,
 	),
 );

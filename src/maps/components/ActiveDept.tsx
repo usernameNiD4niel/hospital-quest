@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DepartmentType, ProfilesProps } from "../../types";
 import AlertModal from "../../components/AlertModal";
 import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 interface Props {
 	department: DepartmentType;
@@ -60,7 +61,8 @@ function ActiveDept({ department, profile }: Props) {
 						<li>Next department is <span className="font-semibold text-[var(--primary-color)]">Operating Room</span>.</li>
 					</ul>
 					<div className="w-full flex justify-end items-center gap-2 mt-4 flex-col md:flex-row">
-						<Button text="Play" className="md:w-fit px-5" variant="primary" />
+						{/* <Button text="Play" className="md:w-fit px-5" variant="primary" /> */}
+						<Link to={`/maps/${department.name}`} className="w-fit px-5 cursor-pointer bg-primary py-3 rounded-lg text-white text-sm">Play</Link>
 						<Button text="Cancel" onClick={onClose} className="md:w-fit px-5" variant="ghost" />
 					</div>
 				</AlertModal>
