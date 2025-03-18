@@ -21,8 +21,12 @@ function ActiveDept({ department, profile }: Props) {
 	}
 
 	return (
-		<div className={`${department.className} flex flex-col items-center md:space-y-1`}>
-			<div className="bg-transparent z-10 w-full h-full absolute cursor-pointer" onClick={onClick} />
+		<div
+			className={`${department.className} flex flex-col items-center md:space-y-1`}>
+			<div
+				className="bg-transparent z-10 w-full h-full absolute cursor-pointer"
+				onClick={onClick}
+			/>
 			{/* Glowing Downward Arrow */}
 			<div className="animate-bounce md:text-5xl font-bold bg-gradient-to-b from-green-300 to-green-700 text-transparent bg-clip-text drop-shadow-lg rotate-180 md:absolute md:-top-12 md:right-12">
 				▲
@@ -53,17 +57,37 @@ function ActiveDept({ department, profile }: Props) {
 			</p>
 
 			{showModal && (
-				<AlertModal open={showModal} setOpen={setShowModal} className="flex flex-col space-y-2 p-5">
-					<h2 className="font-bold md:text-2xl">Department: {department.name}</h2>
+				<AlertModal
+					open={showModal}
+					setOpen={setShowModal}
+					className="flex flex-col space-y-2 p-5">
+					<h2 className="font-bold md:text-2xl">
+						Department: {department.name}
+					</h2>
 					<ul className="list-disc list-inside text-sm md:text-base">
 						<li>You are currently 1 out of 5.</li>
 						<li>You have tried 3 times.</li>
-						<li>Next department is <span className="font-semibold text-[var(--primary-color)]">Operating Room</span>.</li>
+						<li>
+							Next department is{" "}
+							<span className="font-semibold text-[var(--primary-color)]">
+								Operating Room
+							</span>
+							.
+						</li>
 					</ul>
 					<div className="w-full flex justify-end items-center gap-2 mt-4 flex-col md:flex-row">
 						{/* <Button text="Play" className="md:w-fit px-5" variant="primary" /> */}
-						<Link to={`/maps/${department.name}`} className="w-fit px-5 cursor-pointer bg-primary py-3 rounded-lg text-white text-sm">Play</Link>
-						<Button text="Cancel" onClick={onClose} className="md:w-fit px-5" variant="ghost" />
+						<Link
+							to={`/maps/${department.name}`}
+							className="w-full text-center md:w-fit px-5 cursor-pointer bg-primary py-3 rounded-lg text-white text-sm">
+							Play
+						</Link>
+						<Button
+							text="Cancel"
+							onClick={onClose}
+							className="md:w-fit px-5"
+							variant="ghost"
+						/>
 					</div>
 				</AlertModal>
 			)}
