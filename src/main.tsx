@@ -9,13 +9,13 @@ import {
 } from "react-router-dom";
 import OnBoarding from "./on-boarding/OnBoarding";
 import Maps from "./maps/Maps";
-// import Layout from "./Layout";
+import Layout from "./Layout";
 
 const rootEl = document.getElementById("root");
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route>
+		<Route element={<Layout />}>
 			<Route path="/" element={<App />} />
 			<Route path="on-boarding" element={<OnBoarding />} />
 			<Route path="maps" element={<Maps />} />
