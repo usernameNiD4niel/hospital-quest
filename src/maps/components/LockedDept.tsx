@@ -7,7 +7,7 @@ interface Props {
 function LockedDept({ department }: Props) {
 	return (
 		<div className={`${department.className} flex flex-col items-center`}>
-			<div className="absolute -top-12 w-[210px] h-[180px] rounded-full cursor-pointer z-10 bg-gradient-to-tl from-50% opacity-5 to-black" />
+			{/* <div className="absolute -top-12 w-[210px] h-[180px] rounded-full cursor-pointer z-10 bg-gradient-to-tl from-50% opacity-5 to-black" /> */}
 			<img
 				src={"/lock.svg"}
 				alt="Lock image"
