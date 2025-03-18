@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import Modal from "./Modal";
+import { twMerge } from "tailwind-merge";
 
 function QuizPad() {
 	const [selectedTexts, setSelectedTexts] = useState<string[]>([]);
@@ -34,7 +35,7 @@ function QuizPad() {
 				</div>
 				<Reset setSelectedTexts={setSelectedTexts} />
 			</div>
-			<div className="w-full md:max-w-[680px] mt-4 flex gap-2 flex-wrap justify-center">
+			<div className={twMerge("w-full mt-4 flex gap-2 flex-wrap justify-center", "md:max-w-[350px]")}>
 				<Button
 					letter="A"
 					selectedTexts={selectedTexts}
@@ -54,37 +55,26 @@ function QuizPad() {
 					length={answer.length}
 				/>
 				<Button
-					letter="D"
+					letter="J"
+					selectedTexts={selectedTexts}
+					setSelectedTexts={setSelectedTexts}
+					length={answer.length}
+				/>
+
+				<Button
+					letter="T"
 					selectedTexts={selectedTexts}
 					setSelectedTexts={setSelectedTexts}
 					length={answer.length}
 				/>
 				<Button
-					letter="E"
+					letter="B"
 					selectedTexts={selectedTexts}
 					setSelectedTexts={setSelectedTexts}
 					length={answer.length}
 				/>
 				<Button
-					letter="F"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="G"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="H"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="I"
+					letter="C"
 					selectedTexts={selectedTexts}
 					setSelectedTexts={setSelectedTexts}
 					length={answer.length}
@@ -95,60 +85,7 @@ function QuizPad() {
 					setSelectedTexts={setSelectedTexts}
 					length={answer.length}
 				/>
-				<Button
-					letter="K"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="L"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="M"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="N"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="O"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="P"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="Q"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="R"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
-				<Button
-					letter="S"
-					selectedTexts={selectedTexts}
-					setSelectedTexts={setSelectedTexts}
-					length={answer.length}
-				/>
+
 				<Button
 					letter="T"
 					selectedTexts={selectedTexts}
@@ -245,9 +182,9 @@ function Input({
 
 	return (
 		<button
-			className={`border-zinc-500 border text-purple-500 w-16 h-16 rounded-md font-semibold text-xl hover:cursor-pointer ${selectedText
-				? "bg-purple-500 text-white border-0"
-				: "bg-white border-2 border-purple-500"
+			className={`text-[var(--primary-color)] w-16 h-16 rounded-md text-sm font-bold md:text-xl hover:cursor-pointer ${selectedText
+				? "bg-[var(--primary-color)] text-white border-0"
+				: "bg-[#4fb7ff]/70 border-2 border-[#4fb7ff]"
 				}`}
 			onClick={onRemove}>
 			{selectedText}
@@ -288,7 +225,7 @@ function Button({
 
 	return (
 		<button
-			className="bg-purple-500 w-14 h-14 md:w-16 md:h-16 rounded-md text-white font-semibold text-xl hover:cursor-pointer"
+			className="bg-[var(--primary-color)] w-14 h-14 md:w-16 md:h-16 rounded-md text-white text-sm md:text-xl hover:cursor-pointer"
 			onClick={onClick}>
 			{letter}
 		</button>
