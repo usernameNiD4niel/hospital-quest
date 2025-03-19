@@ -1,4 +1,4 @@
-import { DepartmentType } from "../types";
+import { DepartmentType, QuestionOptionsType } from "../types";
 
 export const ER_COOR_CLASS =
 	"absolute top-[calc(100vh-(48vh+45px))] md:top-[calc(100vh-(25vh+60px))] right-[39vw] md:right-[35vw]"; // Emergency Room
@@ -63,3 +63,170 @@ export const MAPS: DepartmentType[] = [
 		className: MW_COOR_CLASS,
 	},
 ];
+
+export const ER_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: "What is the most common initial assessment tool used to determine the severity of a patient's condition in the ER?",
+		answer: "B) Triage Scale",
+		options: [
+			"A) Glasgow Coma Scale",
+			"B) Triage Scale",
+			"C) Morse Fall Scale",
+			"D) APGAR Score"
+		]
+	},
+	{
+		question: "Which of the following conditions would be classified as a Level 1 priority in the ER?",
+		answer: "B) Chest pain with shortness of breath",
+		options: [
+			"A) Broken arm with mild pain",
+			"B) Chest pain with shortness of breath",
+			"C) Mild headache",
+			"D) Minor laceration"
+		]
+	},
+	{
+		question: "When administering CPR, what is the recommended compression-to-ventilation ratio for an adult patient with no advanced airway?",
+		answer: "B) 30:2",
+		options: [
+			"A) 15:2",
+			"B) 30:2",
+			"C) 20:5",
+			"D) 40:2"
+		]
+	},
+	{
+		question: 'What does the acronym "FAST" stand for when assessing a potential stroke patient?',
+		answer: "A) Face, Arms, Speech, Time",
+		options: [
+			"A) Face, Arms, Speech, Time",
+			"B) First Aid, Shock, Trauma",
+			"C) Fingers, Arms, Stability, Triage",
+			"D) Fluid, Airway, Stabilization, Temperature"
+		]
+	},
+	{
+		question: 'What is the first-line medication used to treat anaphylaxis in the ER?',
+		answer: "C) Epinephrine",
+		options: [
+			"A) Diphenhydramine",
+			"B) Albuterol",
+			"C) Epinephrine",
+			"D) Prednisone"
+		]
+	},
+];
+
+export const OR_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: 'What is the purpose of the "time-out" procedure in the OR?',
+		answer: 'B) To confirm the patient’s identity, procedure, and site',
+		options: [
+			"A) To allow the surgical team to rest",
+			"B) To confirm the patient’s identity, procedure, and site",
+			"C) To review post-operative care",
+			"D) To document the surgery duration"
+		]
+	},
+	{
+		question: 'During surgery, what is the correct order for donning sterile gloves?',
+		answer: 'A) Dominant hand first, then non-dominant hand',
+		options: [
+			"A) Dominant hand first, then non-dominant hand",
+			"B) Non-dominant hand first, then dominant hand",
+			"C) Both hands at the same time",
+			"D) It doesn't matter which hand is gloved first"
+		]
+	},
+	{
+		question: 'Which instrument is commonly used for clamping blood vessels during surgery?',
+		answer: 'C) Hemostat',
+		options: [
+			"A) Scalpel",
+			"B) Forceps",
+			"C) Hemostat",
+			"D) Retractor"
+		]
+	},
+	{
+		question: 'What is the most common cause of post-operative infection in the OR?',
+		answer: 'A) Poor hand hygiene',
+		options: [
+			"A) Poor hand hygiene",
+			"B) Incorrect suture technique",
+			"C) Inadequate sterilization of instruments",
+			"D) Cross-contamination from surgical team"
+		]
+	},
+	{
+		question: 'Which anesthesia type renders the patient unconscious during surgery?',
+		answer: 'C) General anesthesia',
+		options: [
+			"A) Local anesthesia",
+			"B) Regional anesthesia",
+			"C) General anesthesia",
+			"D) Epidural anesthesia"
+		]
+	},
+];
+
+export const DROB_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: "What is the normal fetal heart rate range during labor?",
+		answer: "B) 110-160 bpm",
+		options: [
+			"A) 60-100 bpm",
+			"B) 110-160 bpm",
+			"C) 90-120 bpm",
+			"D) 140-200 bpm"
+		]
+	},
+	{
+		question: "What is the term used to describe the thinning and shortening of the cervix during labor?",
+		answer: "B) Effacement",
+		options: [
+			"A) Dilation",
+			"B) Effacement",
+			"C) Crowning",
+			"D) Station"
+		]
+	},
+	{
+		question: "Which of the following is a common complication of labor that may require an emergency C-section?",
+		answer: "A) Pre-eclampsia",
+		options: [
+			"A) Pre-eclampsia",
+			"B) Braxton Hicks contractions",
+			"C) Mild back pain",
+			"D) Morning sickness"
+		]
+	},
+	{
+		question: "During delivery, what is the recommended intervention for shoulder dystocia?",
+		answer: "A) McRoberts maneuver",
+		options: [
+			"A) McRoberts maneuver",
+			"B) Valsalva maneuver",
+			"C) Trendelenburg position",
+			"D) Heimlich maneuver"
+		]
+	},
+	{
+		question: "What medication is commonly given to promote uterine contractions after delivery?",
+		answer: "A) Oxytocin",
+		options: [
+			"A) Oxytocin",
+			"B) Magnesium sulfate",
+			"C) Heparin",
+			"D) Naloxone"
+		]
+	},
+];
+
+export type Departments = "Emergency Room" | "Operating Room" | "Delivery Room/Obgyne";
+
+export const QUESTIONS: Record<Departments, QuestionOptionsType[]> = {
+	"Emergency Room": ER_QUESTIONS,
+	"Operating Room": OR_QUESTIONS,
+	"Delivery Room/Obgyne": DROB_QUESTIONS,
+}

@@ -11,8 +11,6 @@ import OnBoarding from "./on-boarding/OnBoarding";
 import Maps from "./maps/Maps";
 import Layout from "./Layout";
 import Map from "./maps/map/Map";
-import Quiz from "./maps/map/quiz/Quiz";
-import Quiz2 from "./maps/map/quiz/Quiz2";
 
 const rootEl = document.getElementById("root");
 
@@ -22,11 +20,7 @@ const router = createBrowserRouter(
 			<Route index element={<App />} />
 			<Route path="on-boarding" element={<OnBoarding />} />
 			<Route path="maps" element={<Maps />} />
-			<Route path="maps/:department" element={<Map />}>
-				{/* <Route index element={<Map />} /> */}
-				<Route path="1" element={<Quiz />} />
-				<Route path="2" element={<Quiz2 />} />
-			</Route>
+			<Route path="maps/:department" element={<Map />} />
 		</Route>,
 	),
 );

@@ -2,10 +2,16 @@ import FarmMapWeb from "../../assets/farm-map-web.webp";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Button from "../../components/Button";
-import { Link, Outlet } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { Departments, QUESTIONS } from "../../constants/maps";
+import QuizOption from "./quiz/QuizOption";
 
 function Map() {
 	const [counter, setCounter] = useState(30);
+	const [direction, setDirection] = useState(1);
+	const [question, setQuestion] = useState(1);
+	const location = useLocation();
 
 	useEffect(() => {
 		if (counter <= 0) {
@@ -40,8 +46,39 @@ function Map() {
 		);
 	}
 
+	const variants = {
+		enter: (dir: number) => ({
+			x: dir > 0 ? "100%" : "-100%",
+			opacity: 0
+		}),
+		center: { x: "0%", opacity: 1 },
+		exit: (dir: number) => ({
+			x: dir > 0 ? "-100%" : "100%",
+			opacity: 0
+		})
+	}
+	const splittedPath = location.pathname.split("/");
+	const department = decodeURIComponent(splittedPath[splittedPath.length - 1]) as Departments;
+
+	function handleNext() {
+		if (question >= QUESTIONS[department].length) {
+			return;
+		}
+		setDirection(1);
+		setQuestion(prev => prev + 1);
+	}
+
+	function handlePrev() {
+		if (question <= 0) {
+			return;
+		}
+		setDirection(0);
+		setQuestion(prev => prev - 1);
+	}
+
+
 	return (
-		<div className="overflow-y-hidden">
+		<div className="overflow-y-hidden relative">
 			<img
 				src={FarmMapWeb}
 				alt="Farm map image"
@@ -61,7 +98,7 @@ function Map() {
 			/>
 
 			{/* Darkening overlay */}
-			<div className="absolute inset-0 bg-black opacity-50 z-0" />
+			<div className="absolute inset-0 bg-black opacity-80 z-0" />
 
 			<div className="absolute inset-0 z-10 flex items-center justify-center flex-col">
 				<div className="pb-12">
@@ -73,10 +110,32 @@ function Map() {
 						{counter}
 					</p>
 				</div>
-				<div className="w-full">
-					<button className="fixed top-[49vh] left-1 text-white">Prev</button>
-					<Outlet />
-					<button className="fixed top-[49vh] right-1 text-white">Next</button>
+				<div className="w-full relative">
+					<button onClick={handlePrev} className="fixed top-[49vh] left-1 text-white">
+						Prev
+					</button>
+					{/* <button className="fixed top-[49vh] left-1 text-white">Prev</button> */}
+					<AnimatePresence mode="wait" custom={direction}>
+						<motion.div
+							key={question}
+							variants={variants}
+							custom={direction}
+							initial="enter"
+							animate="center"
+							exit="exit"
+							transition={{ duration: 0.3, ease: "easeInOut" }}
+							className="w-full h-full"
+						>
+							<QuizOption quiz={QUESTIONS[department][question]} key={`${department}-${question}`} />
+							{/* more quiz here... */}
+						</motion.div>
+					</AnimatePresence>
+					<button
+						className="fixed top-[49vh] right-1 text-white"
+						onClick={handleNext}>
+						Next
+					</button>
+					{/* <button className="fixed top-[49vh] right-1 text-white">Next</button> */}
 				</div>
 			</div>
 		</div>

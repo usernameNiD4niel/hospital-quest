@@ -78,7 +78,7 @@ function ActiveDept({ department, profile }: Props) {
 					<div className="w-full flex justify-end items-center gap-2 mt-4 flex-col md:flex-row">
 						{/* <Button text="Play" className="md:w-fit px-5" variant="primary" /> */}
 						<Link
-							to={`/maps/${department.name}`}
+							to={`/maps/${encodeURIComponent(department.name)}`}
 							className="w-full text-center md:w-fit px-5 cursor-pointer bg-primary py-3 rounded-lg text-white text-sm">
 							Play
 						</Link>

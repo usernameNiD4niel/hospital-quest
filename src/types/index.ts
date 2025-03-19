@@ -32,3 +32,37 @@ export interface ProfilesProps {
 	 */
 	alt: string;
 }
+
+export interface QuestionImagesType {
+	/**
+	 * Current question. This will be use as an alternative text so that when the user can't load the user, they can still answer 
+	 */
+	question: string;
+	/**
+	 * Current answer.
+	 */
+	answer: string;
+	/**
+	 * 4 pictures URL, images should be in a relative path.
+	 */
+	imageUrls: string[];
+	/**
+	 * A string that contains all of the characters that the user can choose from to complete the task.
+	 */
+	padLetters: string[];
+}
+
+export interface QuestionOptionsType {
+	/**
+	 * Current question. 
+	 */
+	question: string;
+	/**
+	 * Current answer.
+	 */
+	answer: string;
+	/**
+	 * `options` - this will serve as the user to choose, this should contains the `answer`.
+	 */
+	options: string[];
+}
