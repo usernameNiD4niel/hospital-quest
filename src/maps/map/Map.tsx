@@ -6,11 +6,12 @@ import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Departments, QUESTIONS } from "../../constants/maps";
 import QuizOption from "./quiz/QuizOption";
+import { FillerProp } from "../../types";
 
 function Map() {
 	const [counter, setCounter] = useState(30);
 	const [direction, setDirection] = useState(1);
-	const [question, setQuestion] = useState(1);
+	const [question, setQuestion] = useState(0);
 	const location = useLocation();
 
 	useEffect(() => {
@@ -23,6 +24,7 @@ function Map() {
 
 		return () => {
 			clearInterval(t);
+			// localStorage.removeItem("__questions__");
 		};
 	}, [counter]);
 
@@ -64,8 +66,13 @@ function Map() {
 		if (question >= QUESTIONS[department].length) {
 			return;
 		}
-		setDirection(1);
-		setQuestion(prev => prev + 1);
+		if (question === 4) {
+			// means the user submits the answer.
+
+		} else {
+			setDirection(1);
+			setQuestion(prev => prev + 1);
+		}
 	}
 
 	function handlePrev() {
@@ -76,6 +83,22 @@ function Map() {
 		setQuestion(prev => prev - 1);
 	}
 
+	function getFiller(): FillerProp {
+		switch (question) {
+			case 0:
+				return "one";
+			case 1:
+				return "two";
+			case 2:
+				return "three";
+			case 3:
+				return "four";
+			case 4:
+				return "five";
+
+		}
+		return "five";
+	}
 
 	return (
 		<div className="overflow-y-hidden relative">
@@ -100,7 +123,7 @@ function Map() {
 			{/* Darkening overlay */}
 			<div className="absolute inset-0 bg-black opacity-80 z-0" />
 
-			<div className="absolute inset-0 z-10 flex items-center justify-center flex-col">
+			<div className="absolute inset-0 z-10 flex items-center pt-[10vh] flex-col">
 				<div className="pb-12">
 					<p
 						className={twMerge(
@@ -110,10 +133,7 @@ function Map() {
 						{counter}
 					</p>
 				</div>
-				<div className="w-full relative">
-					<button onClick={handlePrev} className="fixed top-[49vh] left-1 text-white">
-						Prev
-					</button>
+				<div className="w-full relative flex flex-col items-center space-y-6">
 					{/* <button className="fixed top-[49vh] left-1 text-white">Prev</button> */}
 					<AnimatePresence mode="wait" custom={direction}>
 						<motion.div
@@ -126,16 +146,14 @@ function Map() {
 							transition={{ duration: 0.3, ease: "easeInOut" }}
 							className="w-full h-full"
 						>
-							<QuizOption quiz={QUESTIONS[department][question]} key={`${department}-${question}`} />
-							{/* more quiz here... */}
+							<QuizOption quiz={QUESTIONS[department][question]} key={`${department}-${question}`} filler={getFiller()} />
 						</motion.div>
 					</AnimatePresence>
-					<button
-						className="fixed top-[49vh] right-1 text-white"
-						onClick={handleNext}>
-						Next
-					</button>
 					{/* <button className="fixed top-[49vh] right-1 text-white">Next</button> */}
+					<div className="w-full flex justify-between items-center max-w-xs md:max-w-lg px-4 space-x-4">
+						<Button text="Previous" onClick={handlePrev} disabled={question === 0} />
+						<Button text={question !== 4 ? "Next" : "Submit"} onClick={handleNext} disabled={question === 4} />
+					</div>
 				</div>
 			</div>
 		</div>

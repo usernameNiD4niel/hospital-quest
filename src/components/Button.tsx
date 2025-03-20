@@ -4,9 +4,9 @@ import { twMerge } from "tailwind-merge";
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
 const buttonClass: Record<ButtonVariant, string> = {
-	"primary": "bg-primary",
-	"secondary": "bg-secondary",
-	"ghost": "bg-transparent hover:cursor-pointer text-black hover:bg-slate-200 transition-all duration-150 ease-linear"
+	"primary": "bg-primary disabled:cursor-not-allowed",
+	"secondary": "bg-secondary disabled:bg-secondary/50 disabled:cursor-not-allowed",
+	"ghost": "bg-transparent hover:cursor-pointer text-black hover:bg-slate-200 transition-all duration-150 ease-linear disabled:cursor-not-allowed"
 }
 
 interface ButtonProps
@@ -32,7 +32,7 @@ function Button({ text = "Let's go!", className, variant = "primary", ...props }
 	return (
 		<button
 			{...props}
-			className={twMerge("w-full cursor-pointer bg-primary py-3 rounded-lg text-white text-sm", className, buttonClass[variant])}
+			className={twMerge("w-full cursor-pointer py-3 rounded-lg text-white text-sm", className, buttonClass[variant], props.disabled && "bg-slate-500/30")}
 		>
 			{text}
 		</button>

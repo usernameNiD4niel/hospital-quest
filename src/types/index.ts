@@ -66,3 +66,5 @@ export interface QuestionOptionsType {
 	 */
 	options: string[];
 }
+
+export type FillerProp = "one" | "two" | "three" | "four" | "five";
