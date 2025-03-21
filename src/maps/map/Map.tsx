@@ -6,13 +6,14 @@ import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Departments, QUESTIONS } from "../../constants/maps";
 import QuizOption from "./quiz/QuizOption";
-import { FillerProp } from "../../types";
+import { FillerProp, QATypes } from "../../types";
 
 function Map() {
 	const [counter, setCounter] = useState(30);
 	const [direction, setDirection] = useState(1);
 	const [question, setQuestion] = useState(0);
 	const location = useLocation();
+	const [qa, setQA] = useState<QATypes[]>([]);
 
 	useEffect(() => {
 		if (counter <= 0) {
@@ -32,7 +33,7 @@ function Map() {
 		setCounter(30);
 	}
 
-	if (counter === 0) {
+	if (counter === 0 && qa.length > 1) {
 		return (
 			<div className="flex items-center py-[20vh] h-screen w-screen absolute bg-amber-900 px-4 flex-col justify-between">
 				<p className="text-5xl text-white font-bold">Game Over!</p>
@@ -59,6 +60,7 @@ function Map() {
 			opacity: 0
 		})
 	}
+
 	const splittedPath = location.pathname.split("/");
 	const department = decodeURIComponent(splittedPath[splittedPath.length - 1]) as Departments;
 
@@ -68,7 +70,27 @@ function Map() {
 		}
 		if (question === 4) {
 			// means the user submits the answer.
+			const questions = localStorage.getItem("__questions__");
+			if (questions) {
+				const s = JSON.parse(questions) as Record<FillerProp, string>;
+				const theTruth = QUESTIONS[department];
+				const answers = Object.values(s);
 
+				const qa: QATypes[] = [];
+
+				for (let i = 0; i < theTruth.length; ++i) {
+					const truth = theTruth[i];
+
+					qa.push({
+						answer: truth.answer,
+						isCorrect: answers[i] === truth.answer,
+						question: truth.question
+					});
+				}
+
+				setQA(qa);
+				localStorage.removeItem("__questions__");
+			}
 		} else {
 			setDirection(1);
 			setQuestion(prev => prev + 1);
@@ -133,7 +155,7 @@ function Map() {
 						{counter}
 					</p>
 				</div>
-				<div className="w-full relative flex flex-col items-center space-y-6">
+				<div className="w-full relative flex flex-col items-center space-y-6 overflow-hidden">
 					{/* <button className="fixed top-[49vh] left-1 text-white">Prev</button> */}
 					<AnimatePresence mode="wait" custom={direction}>
 						<motion.div
@@ -143,7 +165,7 @@ function Map() {
 							initial="enter"
 							animate="center"
 							exit="exit"
-							transition={{ duration: 0.3, ease: "easeInOut" }}
+							transition={{ duration: 0.5, ease: "easeInOut" }}
 							className="w-full h-full"
 						>
 							<QuizOption quiz={QUESTIONS[department][question]} key={`${department}-${question}`} filler={getFiller()} />
@@ -152,10 +174,27 @@ function Map() {
 					{/* <button className="fixed top-[49vh] right-1 text-white">Next</button> */}
 					<div className="w-full flex justify-between items-center max-w-xs md:max-w-lg px-4 space-x-4">
 						<Button text="Previous" onClick={handlePrev} disabled={question === 0} />
-						<Button text={question !== 4 ? "Next" : "Submit"} onClick={handleNext} disabled={question === 4} />
+						<Button text={question !== 4 ? "Next" : "Submit"} onClick={handleNext} />
 					</div>
 				</div>
 			</div>
+
+			{qa.length > 1 && (
+				<div className="absolute inset-0 z-10 flex items-center justify-center flex-col bg-white">
+					{qa.map(q => (
+						<div key={q.question} className="w-full">
+							<p>{q.question}</p>
+							<p className={twMerge(q.isCorrect ? "line-through text-red-500" : "text-green-500")}>
+								<span>{q.answer}</span>
+								{!q.isCorrect && <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
+									<path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#0F0F0F" />
+								</svg>}
+							</p>
+						</div>
+					))}
+					{/* Check if has enough points to go to next department. */}
+				</div>
+			)}
 		</div>
 	);
 }

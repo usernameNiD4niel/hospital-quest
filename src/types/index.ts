@@ -67,4 +67,6 @@ export interface QuestionOptionsType {
 	options: string[];
 }
 
+export type QATypes = Omit<QuestionOptionsType, "options"> & { isCorrect: boolean };
+
 export type FillerProp = "one" | "two" | "three" | "four" | "five";
