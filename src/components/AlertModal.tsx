@@ -1,48 +1,67 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import CloseIcon from "./CloseIcon";
 
 interface Props {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-    children: ReactNode;
-    className?: string;
+	open: boolean;
+	setOpen: (open: boolean) => void;
+	children: ReactNode;
+	className?: string;
+	/**
+	 * Optional but the default value is `true`. When set to `true`, the component will automatically close the component when the user clicks outside of the component.
+	 */
+	dismissable?: boolean;
 }
 
-function AlertModal({ open, setOpen, children, className }: Props) {
+function AlertModal({
+	open,
+	setOpen,
+	dismissable = true,
+	children,
+	className,
+}: Props) {
+	if (!open) {
+		return null;
+	}
 
-    if (!open) {
-        return null;
-    }
+	function onClose() {
+		if (dismissable) {
+			setOpen(false);
+		}
+	}
 
-    function onClose() {
-        setOpen(false);
-    }
-
-    return (
-        <AnimatePresence>
-            <div className={"w-full h-screen fixed overflow-hidden flex items-center justify-center inset-0 z-10"}>
-                <motion.div
-                    className="w-screen absolute h-screen bg-black opacity-30"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.3 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={onClose}
-                />
-                <motion.div
-                    className={twMerge("w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[400px] bg-white z-10 flex flex-col p-4 relative", className)}
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.7 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                    <div className="absolute top-2 right-4 hover:cursor-pointer" onClick={onClose}>X</div>
-                    {children}
-                </motion.div>
-            </div>
-        </AnimatePresence>
-    )
+	return (
+		<AnimatePresence>
+			<div
+				className={
+					"w-full h-screen fixed overflow-hidden flex items-center justify-center inset-0 z-10"
+				}>
+				<motion.div
+					className="w-screen absolute h-screen bg-black opacity-30"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 0.3 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.3 }}
+					onClick={onClose}
+				/>
+				<motion.div
+					className={twMerge(
+						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[600px] bg-white z-10 flex flex-col p-4 relative",
+						className,
+					)}
+					initial={{ opacity: 0, scale: 0.7 }}
+					animate={{ opacity: 1, scale: 1 }}
+					exit={{ opacity: 0, scale: 0.7 }}
+					transition={{ duration: 0.3, ease: "easeInOut" }}>
+					<div className="absolute top-4 right-4 hover:cursor-pointer">
+						<CloseIcon onClick={onClose} fill="#000" />
+					</div>
+					{children}
+				</motion.div>
+			</div>
+		</AnimatePresence>
+	);
 }
 
-export default AlertModal
+export default AlertModal;

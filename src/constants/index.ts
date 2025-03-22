@@ -9,6 +9,8 @@ import {
 	MW_COOR_CLASS,
 } from "./maps";
 
+import { PROGRESS } from "./history";
+
 export {
 	profiles,
 	ER_COOR_CLASS,
@@ -18,4 +20,5 @@ export {
 	LAB_COOR_CLASS,
 	SW_COOR_CLASS,
 	MW_COOR_CLASS,
+	PROGRESS,
 };

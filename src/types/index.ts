@@ -1,4 +1,14 @@
-export type DepartmentType = {
+export enum Departments {
+	"Emergency Room" = "Emergency Room",
+	"Operating Room" = "Operating Room",
+	"Delivery Room/Obgyne" = "Delivery Room/Obgyne",
+	"Out-patient Department" = "Out-patient Department",
+	"Surgical Wards" = "Surgical Wards",
+	"Laboratory" = "Laboratory",
+	"Medical Ward" = "Medical Ward",
+}
+
+export interface DepartmentType {
 	/**
 	 * This is a unique identifier for each department.
 	 */
@@ -6,7 +16,7 @@ export type DepartmentType = {
 	/**
 	 * Name of the department e.g. Emergency Room
 	 */
-	name: string;
+	name: Departments;
 	/**
 	 * If true means the department has been cleared by the current user.
 	 */
@@ -20,7 +30,7 @@ export type DepartmentType = {
 	 * This will be use to locate the department correctly.
 	 */
 	className: string;
-};
+}
 
 export interface ProfilesProps {
 	/**
@@ -35,7 +45,7 @@ export interface ProfilesProps {
 
 export interface QuestionImagesType {
 	/**
-	 * Current question. This will be use as an alternative text so that when the user can't load the user, they can still answer 
+	 * Current question. This will be use as an alternative text so that when the user can't load the user, they can still answer
 	 */
 	question: string;
 	/**
@@ -54,7 +64,7 @@ export interface QuestionImagesType {
 
 export interface QuestionOptionsType {
 	/**
-	 * Current question. 
+	 * Current question.
 	 */
 	question: string;
 	/**
@@ -67,6 +77,38 @@ export interface QuestionOptionsType {
 	options: string[];
 }
 
-export type QATypes = Omit<QuestionOptionsType, "options"> & { isCorrect: boolean };
+export interface QATypes extends Omit<QuestionOptionsType, "options"> {
+	isCorrect: boolean;
+}
+
+export interface QAResultType {
+	/**
+	 * Question and answer with 4 options.
+	 */
+	qa: QATypes[];
+	/**
+	 * Points gained to current department.
+	 */
+	gainedPoints: number;
+	/**
+	 * If true, the user can play the next department.
+	 */
+	canGoNext: boolean;
+}
+
+export interface ProgressType
+	extends Record<
+		Departments,
+		{
+			/**
+			 * This will be use for storing the previous answer if they already answered the current question correctly.
+			 * e.g. `q1` = `true`
+			 */
+			[key: string]: boolean;
+		}
+	> {
+	totalPoints: number;
+	currentDepartment: Departments;
+}
 
 export type FillerProp = "one" | "two" | "three" | "four" | "five";
