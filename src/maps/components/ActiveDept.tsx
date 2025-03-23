@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DepartmentType, ProfilesProps } from "../../types";
 import AlertModal from "../../components/AlertModal";
 import PromptModal from "./PromptModal";
+import DisplayStar from "../../components/DisplayStar";
 interface Props {
 	department: DepartmentType;
 	profile: ProfilesProps;
@@ -31,7 +32,7 @@ function ActiveDept({ department, profile }: Props) {
 			</div>
 
 			{/* Profile Image with Pulse Effect */}
-			<div className="relative drop-shadow-2xl">
+			<div className="relative drop-shadow-2xl flex flex-col items-center">
 				{/* Profile Image */}
 				<img
 					src={profile.url}
@@ -41,8 +42,10 @@ function ActiveDept({ department, profile }: Props) {
 					className="w-8 h-auto rounded-full shadow-lg border-2 border-green-600"
 				/>
 
+				<DisplayStar department={department.name} />
+
 				{/* Expanding Pulse Effect */}
-				<div className="absolute inset-0 w-full h-full rounded-full bg-gradient-to-r from-green-300 to-green-700 opacity-40 animate-ping"></div>
+				<div className="absolute inset-0 w-full h-[50%] rounded-full bg-gradient-to-r from-green-300 to-green-700 opacity-40 animate-ping"></div>
 
 				{/* Second Wider Pulse for Dramatic Effect */}
 				<div className="absolute inset-0 w-[50%] h-[50%] md:w-[140%] md:h-[140%] rounded-full bg-gradient-to-r from-green-400 to-green-600 opacity-30 animate-ping delay-100"></div>

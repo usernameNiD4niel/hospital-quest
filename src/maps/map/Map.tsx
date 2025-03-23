@@ -30,6 +30,11 @@ function Map() {
 	const [isSubmit, setIsSubmit] = useState(false);
 	const navigate = useNavigate();
 
+	const splittedPath = location.pathname.split("/");
+	const department = decodeURIComponent(
+		splittedPath[splittedPath.length - 1],
+	) as Departments;
+
 	useEffect(() => {
 		if (counter && counter <= 0) {
 			return;
@@ -42,6 +47,15 @@ function Map() {
 			clearInterval(t);
 		};
 	}, [counter]);
+
+	useEffect(() => {
+		const name = localStorage.getItem("name");
+		const currentIndex = localStorage.getItem("currentIndex");
+
+		if (!name || !currentIndex) {
+			navigate(`/on-boarding?to=/maps/${encodeURIComponent(department)}`);
+		}
+	}, [navigate, department]);
 
 	function reset() {
 		setCounter(30);
@@ -63,11 +77,6 @@ function Map() {
 		}),
 	};
 
-	const splittedPath = location.pathname.split("/");
-	const department = decodeURIComponent(
-		splittedPath[splittedPath.length - 1],
-	) as Departments;
-
 	function handleNext() {
 		if (question >= QUESTIONS[department].length) {
 			return;
@@ -83,6 +92,7 @@ function Map() {
 				const qa: QATypes[] = [];
 				let noOfCorrect = 0;
 				let gainedPoints = 0;
+				let isCleared = false;
 				const prog = localStorage.getItem("progress");
 				let progress: null | ProgressType = null;
 
@@ -103,7 +113,7 @@ function Map() {
 							gainedPoints += 2;
 							progress[department][`q${i + 1}`] = true;
 						}
-						++noOfCorrect;
+						++noOfCorrect; // ! fix this DANIEL!
 					}
 
 					qa.push({
@@ -117,6 +127,7 @@ function Map() {
 				progress.totalPoints = overAll;
 
 				const level = DEPARTMENT_LEVEL[progress.currentDepartment];
+				const currDeptReqPoints = DEPARTMENT_LEVEL[department];
 				const currDept = progress.currentDepartment;
 
 				/**
@@ -130,11 +141,14 @@ function Map() {
 					progress.currentDepartment = keys[index + 1];
 				}
 
+				if (overAll >= currDeptReqPoints) {
+					progress[department].isCleared = true;
+				}
+
 				let canGoNext = false;
 
 				if (noOfCorrect >= 4) {
 					canGoNext = true;
-					progress[department].isCleared = true;
 				}
 
 				localStorage.setItem("progress", JSON.stringify(progress));

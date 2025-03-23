@@ -24,7 +24,7 @@ function Form() {
 		console.log(to);
 
 		if (to) {
-			navigate(encodeURIComponent(to));
+			navigate(decodeURIComponent(to));
 			return;
 		}
 
