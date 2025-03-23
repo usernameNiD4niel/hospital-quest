@@ -1,3 +1,4 @@
+import UnlockIcon from "../../components/UnlockIcon";
 import { DepartmentType } from "../../types";
 
 interface Props {
@@ -7,11 +8,10 @@ interface Props {
 function ClearedDept({ department }: Props) {
 	return (
 		<div
-			className={`bg-green-500 rounded-full w-6 h-6 ${department.className}`}>
-			<p>{department.name}</p>
-			<p>
-				This is a cleared department. This should display a green unlock with
-				check.
+			className={`${department.className} flex flex-col items-center md:space-y-1`}>
+			<UnlockIcon fill="#00C950" width="20px" height="20px" />
+			<p className="bg-green-500 text-white rounded-md px-2 hidden md:block">
+				<span>{department.name}</span>
 			</p>
 		</div>
 	);

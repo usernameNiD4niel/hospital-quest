@@ -2,7 +2,7 @@ import FarmMapWeb from "../../assets/farm-map-web.webp";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Button from "../../components/Button";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { QUESTIONS } from "../../constants/maps";
 import QuizOption from "./quiz/QuizOption";
@@ -18,6 +18,8 @@ import CloseIcon from "../../components/CloseIcon";
 import AlertModal from "../../components/AlertModal";
 import { PROGRESS } from "../../constants";
 import LinkButton from "../../components/LinkButton";
+import { DEPARTMENT_LEVEL } from "../../constants/history";
+import BackButton from "../../components/BackButton";
 
 function Map() {
 	const [counter, setCounter] = useState<undefined | number>(30);
@@ -26,6 +28,7 @@ function Map() {
 	const location = useLocation();
 	const [result, setResult] = useState<QAResultType>();
 	const [isSubmit, setIsSubmit] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (counter && counter <= 0) {
@@ -37,32 +40,15 @@ function Map() {
 
 		return () => {
 			clearInterval(t);
-			// localStorage.removeItem("__questions__");
 		};
 	}, [counter]);
 
-	function handlePlayAgain() {
+	function reset() {
 		setCounter(30);
 		localStorage.removeItem("__questions__");
 		setQuestion(0);
+		setIsSubmit(false);
 		setResult(undefined);
-	}
-
-	if (counter === 0 && !result) {
-		return (
-			<div className="flex items-center py-[20vh] h-screen w-screen absolute bg-amber-900 px-4 flex-col justify-between">
-				<p className="text-5xl text-white font-bold">Game Over!</p>
-				<div className="w-full flex flex-col md:flex-row gap-2 justify-end items-center max-w-lg">
-					<Button text="Try again" onClick={handlePlayAgain} />
-					<LinkButton
-						to={"/maps?gained-points=2&department=Current Dept Name"}
-						variant="ghost"
-						className="text-white hover:text-amber-900">
-						Go back
-					</LinkButton>
-				</div>
-			</div>
-		);
 	}
 
 	const variants = {
@@ -95,7 +81,7 @@ function Map() {
 				const answers = Object.values(s);
 
 				const qa: QATypes[] = [];
-				let canGoNext = true;
+				let noOfCorrect = 0;
 				let gainedPoints = 0;
 				const prog = localStorage.getItem("progress");
 				let progress: null | ProgressType = null;
@@ -106,21 +92,18 @@ function Map() {
 					progress = PROGRESS;
 				}
 
-				const progDept = progress[department];
-
 				for (let i = 0; i < theTruth.length; ++i) {
 					const truth = theTruth[i];
 					const isCorrect = answers[i] === truth.answer;
 
-					if (!isCorrect) {
-						canGoNext = false;
-					} else {
-						const isPrevCorrect = progDept[`q${i + 1}`];
+					if (isCorrect) {
+						const isPrevCorrect = progress[department][`q${i + 1}`]; // if the current question answered the question correctly before.
 
 						if (!isPrevCorrect) {
 							gainedPoints += 2;
-							progDept[`q${i + 1}`] = true;
+							progress[department][`q${i + 1}`] = true;
 						}
+						++noOfCorrect;
 					}
 
 					qa.push({
@@ -130,7 +113,29 @@ function Map() {
 					});
 				}
 
-				progress.totalPoints = progress.totalPoints + gainedPoints;
+				const overAll = progress.totalPoints + gainedPoints;
+				progress.totalPoints = overAll;
+
+				const level = DEPARTMENT_LEVEL[progress.currentDepartment];
+				const currDept = progress.currentDepartment;
+
+				/**
+				 * We do this since even though the user already unlocked the department that they are playing, we don't know if they've perfectly answered the question.
+				 * If not then they can gain at least 2 points to that department resulting of points increase.
+				 */
+				if (overAll >= level) {
+					// Means user unlock new department.
+					const keys = Object.keys(DEPARTMENT_LEVEL) as Departments[];
+					const index = keys.indexOf(currDept);
+					progress.currentDepartment = keys[index + 1];
+				}
+
+				let canGoNext = false;
+
+				if (noOfCorrect >= 4) {
+					canGoNext = true;
+					progress[department].isCleared = true;
+				}
 
 				localStorage.setItem("progress", JSON.stringify(progress));
 
@@ -181,8 +186,9 @@ function Map() {
 				<div>
 					<h3 className="text-lg font-bold">Congrats!!!</h3>
 					<p>
-						You've successfully cleared {department} department. You gained +
-						{gp}
+						You've successfully cleared{" "}
+						<span className="font-semibold">{department}</span> department. You
+						gained +<span className="font-semibold">{gp}</span>
 					</p>
 				</div>
 			);
@@ -199,6 +205,31 @@ function Map() {
 		);
 	}
 
+	function getTitleNoResult() {
+		return (
+			<div>
+				<h3 className="text-lg font-bold">Times up⌚!</h3>
+				<p>
+					You don't gained any points, try again I know you can clear this
+					department master😉.
+				</p>
+			</div>
+		);
+	}
+
+	function handlePlayNext(res: QAResultType) {
+		if (res.canGoNext) {
+			const deptVals = Object.values(Departments);
+			const index = deptVals.indexOf(department);
+			const d = deptVals[index + 1]; // access the next department that the user currently playing.
+			const url = `/maps/${d}`;
+			reset();
+			navigate(url);
+		} else {
+			reset();
+		}
+	}
+
 	return (
 		<div className="overflow-y-hidden relative">
 			<img
@@ -207,21 +238,21 @@ function Map() {
 				width={2500}
 				height={2500}
 				className="w-screen h-screen hidden md:block"
-				loading="lazy"
+				loading="eager"
 			/>
-
 			<img
 				src="/farm-map.webp"
 				alt="Game map"
 				width={2200}
 				height={2200}
 				className="h-screen w-screen md:hidden"
-				loading="lazy"
+				loading="eager"
 			/>
+
+			<DisplayDepartment department={department} />
 
 			{/* Darkening overlay */}
 			<div className="absolute inset-0 bg-black opacity-80 z-0" />
-
 			<div className="absolute inset-0 z-10 flex items-center pt-[10vh] flex-col">
 				{counter && (
 					<div className="pb-12">
@@ -235,7 +266,6 @@ function Map() {
 					</div>
 				)}
 				<div className="w-full relative flex flex-col items-center space-y-6 overflow-hidden">
-					{/* <button className="fixed top-[49vh] left-1 text-white">Prev</button> */}
 					<AnimatePresence mode="wait" custom={direction}>
 						<motion.div
 							key={question}
@@ -268,11 +298,11 @@ function Map() {
 				</div>
 			</div>
 
-			{/* <div className="absolute inset-0 z-10 flex items-center justify-center flex-col bg-white overflow-y-auto"> */}
 			{isSubmit && result && (
 				<AlertModal
 					open={isSubmit}
 					dismissable={false}
+					closable={false}
 					setOpen={setIsSubmit}
 					className="p-10 py-7 overflow-y-auto flex flex-col space-y-4">
 					{getTitle(result)}
@@ -280,7 +310,24 @@ function Map() {
 						<SubmitModal q={q} key={q.question} num={index + 1} />
 					))}
 					<div className="w-full flex justify-end items-center gap-2 mt-2 flex-col md:flex-row">
-						<Button text={result.canGoNext ? "Play next" : "Try again"} />
+						<Button
+							text={result.canGoNext ? "Play next" : "Try again"}
+							onClick={() => handlePlayNext(result)}
+						/>
+						<LinkButton to="/maps" variant="ghost">
+							Go back
+						</LinkButton>
+					</div>
+				</AlertModal>
+			)}
+			{counter === 0 && !isSubmit && (
+				<AlertModal
+					dismissable={false}
+					closable={false}
+					className="p-10 py-7 overflow-y-auto flex flex-col space-y-4">
+					{getTitleNoResult()}
+					<div className="w-full flex justify-end items-center gap-2 mt-2 flex-col md:flex-row">
+						<Button text={"Try again"} onClick={() => reset()} />
 						{/* <Button variant="ghost" text="Go back" /> */}
 						<LinkButton to="/maps" variant="ghost">
 							Go back
@@ -288,7 +335,6 @@ function Map() {
 					</div>
 				</AlertModal>
 			)}
-			{/* </div> */}
 		</div>
 	);
 }
@@ -312,6 +358,22 @@ function SubmitModal({ q, num }: SubmitModalProps) {
 				<span>{q.answer}</span>
 				{q.isCorrect ? <CheckIcon /> : <CloseIcon />}
 			</p>
+		</div>
+	);
+}
+
+interface DisplayDepartmentProps {
+	department: Departments;
+}
+
+function DisplayDepartment({ department }: DisplayDepartmentProps) {
+	return (
+		<div className="w-full fixed top-0 px-4 left-0 right-0 py-4 flex items-center bg-gradient-to-br from-black z-20 justify-between">
+			<BackButton svgFill="#ffffff" className="text-white">
+				Back
+			</BackButton>
+			<h2 className="text-white text-xl font-bold">{department}</h2>
+			<div />
 		</div>
 	);
 }

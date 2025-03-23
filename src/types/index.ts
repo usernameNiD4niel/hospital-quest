@@ -1,4 +1,7 @@
 export enum Departments {
+	/**
+	 * Level 1 department that contains 5 questions based on Emergency Room topic.
+	 */
 	"Emergency Room" = "Emergency Room",
 	"Operating Room" = "Operating Room",
 	"Delivery Room/Obgyne" = "Delivery Room/Obgyne",
@@ -22,14 +25,13 @@ export interface DepartmentType {
 	 */
 	isCleared: boolean;
 	/**
-	 * If true means the department has not been played yet.
-	 * If false and `isCleared` = false, then we are sure that the current department is where the user should play (current department user is playing.)
-	 */
-	isLocked: boolean;
-	/**
 	 * This will be use to locate the department correctly.
 	 */
 	className: string;
+	/**
+	 * If true, means the user is currently at this stage.
+	 */
+	isActive: boolean;
 }
 
 export interface ProfilesProps {
@@ -105,10 +107,15 @@ export interface ProgressType
 			 * e.g. `q1` = `true`
 			 */
 			[key: string]: boolean;
+			isCleared: boolean;
 		}
 	> {
 	totalPoints: number;
 	currentDepartment: Departments;
+}
+
+export interface DepartmentLevelType extends Record<Departments, number> {
+	[key: string]: number;
 }
 
 export type FillerProp = "one" | "two" | "three" | "four" | "five";

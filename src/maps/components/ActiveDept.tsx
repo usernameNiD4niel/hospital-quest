@@ -28,12 +28,12 @@ function ActiveDept({ department, profile }: Props) {
 				onClick={onClick}
 			/>
 			{/* Glowing Downward Arrow */}
-			<div className="animate-bounce md:text-5xl font-bold bg-gradient-to-b from-green-300 to-green-700 text-transparent bg-clip-text drop-shadow-lg rotate-180 md:absolute md:-top-12 md:right-12">
+			<div className="animate-bounce md:text-3xl font-bold bg-gradient-to-b from-green-300 to-green-700 text-transparent bg-clip-text drop-shadow-lg rotate-180 absolute -top-7 md:-top-12">
 				▲
 			</div>
 
 			{/* Profile Image with Pulse Effect */}
-			<div className="relative mt-3 drop-shadow-2xl">
+			<div className="relative drop-shadow-2xl">
 				{/* Profile Image */}
 				<img
 					src={profile.url}

@@ -1,9 +1,9 @@
 import { Departments, DepartmentType, QuestionOptionsType } from "../types";
 
 export const ER_COOR_CLASS =
-	"absolute top-[calc(100vh-(48vh+45px))] md:top-[calc(100vh-(25vh+60px))] right-[39vw] md:right-[35vw]"; // Emergency Room
+	"absolute top-[calc(100vh-(48vh+10px))] md:top-[calc(100vh-(25vh+60px))] right-[40vw] md:right-[35vw]"; // Emergency Room
 export const OR_COOR_CLASS =
-	"absolute top-[calc(100vh-(42vh-10px))] md:top-[calc(100vh-(50vh-60px))] right-[60vw] md:right-[25vw]"; // Operating Room
+	"absolute top-[calc(100vh-41vh)] md:top-[calc(100vh-(50vh-60px))] right-[60vw] md:right-[25vw]"; // Operating Room
 export const DR_OB_COOR_CLASS =
 	"absolute bottom-[23vh] md:bottom-[21vh] right-[calc(63vw+30px)] md:right-[52vw]"; // Delivery Room/Obgyne
 export const OPD_COOR_CLASS =
@@ -20,50 +20,50 @@ export const MAPS: DepartmentType[] = [
 		id: 1,
 		name: Departments["Emergency Room"],
 		isCleared: false,
-		isLocked: false,
 		className: ER_COOR_CLASS,
+		isActive: true,
 	},
 	{
 		id: 2,
 		name: Departments["Operating Room"],
 		isCleared: false,
-		isLocked: true,
 		className: OR_COOR_CLASS,
+		isActive: false,
 	},
 	{
 		id: 3,
 		name: Departments["Delivery Room/Obgyne"],
 		isCleared: false,
-		isLocked: true,
 		className: DR_OB_COOR_CLASS,
+		isActive: false,
 	},
 	{
 		id: 4,
 		name: Departments["Out-patient Department"],
 		isCleared: false,
-		isLocked: true,
 		className: OPD_COOR_CLASS,
+		isActive: false,
 	},
 	{
 		id: 5,
 		name: Departments["Surgical Wards"],
 		isCleared: false,
-		isLocked: true,
 		className: SW_COOR_CLASS,
+		isActive: false,
 	},
 	{
 		id: 6,
 		name: Departments["Laboratory"],
 		isCleared: false,
-		isLocked: true,
 		className: LAB_COOR_CLASS,
+		isActive: false,
 	},
 	{
 		id: 7,
 		name: Departments["Medical Ward"],
 		isCleared: false,
-		isLocked: true,
 		className: MW_COOR_CLASS,
+		isActive: false,
 	},
 ];
 

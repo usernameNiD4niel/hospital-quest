@@ -11,6 +11,8 @@ import {
 
 import { PROGRESS } from "./history";
 
+import { CLOUD_IMAGES } from "./images";
+
 export {
 	profiles,
 	ER_COOR_CLASS,
@@ -21,4 +23,5 @@ export {
 	SW_COOR_CLASS,
 	MW_COOR_CLASS,
 	PROGRESS,
+	CLOUD_IMAGES,
 };

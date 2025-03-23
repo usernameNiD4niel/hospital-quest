@@ -1,13 +1,17 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import CloseIcon from "./CloseIcon";
 
 interface Props {
-	open: boolean;
-	setOpen: (open: boolean) => void;
+	open?: boolean;
+	setOpen?: (open: boolean) => void;
 	children: ReactNode;
 	className?: string;
+	/**
+	 * Optional but if this is true, the user can click the `close` button, the default value is true.
+	 */
+	closable?: boolean;
 	/**
 	 * Optional but the default value is `true`. When set to `true`, the component will automatically close the component when the user clicks outside of the component.
 	 */
@@ -15,19 +19,29 @@ interface Props {
 }
 
 function AlertModal({
-	open,
+	open = true,
 	setOpen,
 	dismissable = true,
 	children,
+	closable = true,
 	className,
 }: Props) {
-	if (!open) {
+	const [o, setO] = useState(false);
+
+	useEffect(() => {
+		setO(open);
+	}, [open]);
+
+	if (!o) {
 		return null;
 	}
 
 	function onClose() {
 		if (dismissable) {
-			setOpen(false);
+			if (setOpen) {
+				setOpen(false);
+			}
+			setO(false);
 		}
 	}
 
@@ -54,9 +68,11 @@ function AlertModal({
 					animate={{ opacity: 1, scale: 1 }}
 					exit={{ opacity: 0, scale: 0.7 }}
 					transition={{ duration: 0.3, ease: "easeInOut" }}>
-					<div className="absolute top-4 right-4 hover:cursor-pointer">
-						<CloseIcon onClick={onClose} fill="#000" />
-					</div>
+					{closable && (
+						<div className="absolute top-4 right-4 hover:cursor-pointer">
+							<CloseIcon onClick={onClose} fill="#000" />
+						</div>
+					)}
 					{children}
 				</motion.div>
 			</div>
