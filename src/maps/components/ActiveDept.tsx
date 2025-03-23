@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { DepartmentType, ProfilesProps } from "../../types";
 import AlertModal from "../../components/AlertModal";
-import Button from "../../components/Button";
-import { Link } from "react-router-dom";
-
+import PromptModal from "./PromptModal";
 interface Props {
 	department: DepartmentType;
 	profile: ProfilesProps;
@@ -61,34 +59,7 @@ function ActiveDept({ department, profile }: Props) {
 					open={showModal}
 					setOpen={setShowModal}
 					className="flex flex-col space-y-2 p-5">
-					<h2 className="font-bold md:text-2xl">
-						Department: {department.name}
-					</h2>
-					<ul className="list-disc list-inside text-sm md:text-base">
-						<li>You are currently 1 out of 5.</li>
-						<li>You have tried 3 times.</li>
-						<li>
-							Next department is{" "}
-							<span className="font-semibold text-[var(--primary-color)]">
-								Operating Room
-							</span>
-							.
-						</li>
-					</ul>
-					<div className="w-full flex justify-end items-center gap-2 mt-4 flex-col md:flex-row">
-						{/* <Button text="Play" className="md:w-fit px-5" variant="primary" /> */}
-						<Link
-							to={`/maps/${encodeURIComponent(department.name)}`}
-							className="w-full text-center md:w-fit px-5 cursor-pointer bg-primary py-3 rounded-lg text-white text-sm">
-							Play
-						</Link>
-						<Button
-							text="Cancel"
-							onClick={onClose}
-							className="md:w-fit px-5"
-							variant="ghost"
-						/>
-					</div>
+					<PromptModal department={department} onClose={onClose} />
 				</AlertModal>
 			)}
 		</div>
