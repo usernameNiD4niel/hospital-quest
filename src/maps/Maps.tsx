@@ -4,6 +4,7 @@ import Coordinate from "./components/Coordinate";
 import FarmMapWeb from "../assets/farm-map-web.webp";
 import { CLOUD_IMAGES } from "../constants";
 import { getRandomValue } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 // Cloud Particle Component
 interface CloudParticleProps {
@@ -66,6 +67,15 @@ const DustParticle: React.FC<DustParticleProps> = ({ index }) => {
 function Maps() {
 	const numClouds = 7; // Adjust the number of clouds as needed
 	const numParticles = 50; // Adjust the number of dust particles as needed
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const name = localStorage.getItem("name");
+
+		if (!name) {
+			navigate("/on-boarding?to=/maps");
+		}
+	}, [navigate]);
 
 	return (
 		<div className="w-full flex items-center justify-center h-screen relative overflow-hidden bg-gradient-to-br from-[#9EC2C0] to-[#6AA6BD] flex-col">
