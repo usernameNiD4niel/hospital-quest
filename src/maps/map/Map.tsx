@@ -92,7 +92,6 @@ function Map() {
 				const qa: QATypes[] = [];
 				let noOfCorrect = 0;
 				let gainedPoints = 0;
-				let isCleared = false;
 				const prog = localStorage.getItem("progress");
 				let progress: null | ProgressType = null;
 
