@@ -22,7 +22,7 @@ import { DEPARTMENT_LEVEL } from "../../constants/history";
 import BackButton from "../../components/BackButton";
 
 function Map() {
-	const [counter, setCounter] = useState<undefined | number>(30);
+	const [counter, setCounter] = useState<undefined | number>(undefined);
 	const [direction, setDirection] = useState(1);
 	const [question, setQuestion] = useState(0);
 	const location = useLocation();
@@ -36,7 +36,7 @@ function Map() {
 	) as Departments;
 
 	useEffect(() => {
-		if (counter && counter <= 0) {
+		if (counter === undefined || counter <= 0) {
 			return;
 		}
 		const t = setInterval(() => {
@@ -47,6 +47,12 @@ function Map() {
 			clearInterval(t);
 		};
 	}, [counter]);
+
+	useEffect(() => {
+		if (question === 3) {
+			setCounter(30);
+		}
+	}, [question]);
 
 	useEffect(() => {
 		const name = localStorage.getItem("name");
@@ -105,9 +111,8 @@ function Map() {
 					const truth = theTruth[i];
 					const isCorrect = answers[i] === truth.answer;
 
+					const isPrevCorrect = progress[department][`q${i + 1}`]; // if the current question answered the question correctly before.
 					if (isCorrect) {
-						const isPrevCorrect = progress[department][`q${i + 1}`]; // if the current question answered the question correctly before.
-
 						if (!isPrevCorrect) {
 							gainedPoints += 2;
 							progress[department][`q${i + 1}`] = true;
@@ -126,7 +131,6 @@ function Map() {
 				progress.totalPoints = overAll;
 
 				const level = DEPARTMENT_LEVEL[progress.currentDepartment];
-				const currDeptReqPoints = DEPARTMENT_LEVEL[department];
 				const currDept = progress.currentDepartment;
 
 				/**
@@ -140,15 +144,9 @@ function Map() {
 					progress.currentDepartment = keys[index + 1];
 				}
 
-				if (overAll >= currDeptReqPoints) {
-					progress[department].isCleared = true;
-				}
-
-				let canGoNext = false;
-
-				if (noOfCorrect >= 4) {
-					canGoNext = true;
-				}
+				const isCleared = noOfCorrect >= 4;
+				progress[department].isCleared = isCleared;
+				const canGoNext = isCleared;
 
 				localStorage.setItem("progress", JSON.stringify(progress));
 
