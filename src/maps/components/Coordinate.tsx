@@ -17,7 +17,7 @@ function Coordinate() {
 	const profile = profiles[Number(currentIndex)];
 
 	function isInRange(totalPoints: number, reqPoints: number): boolean {
-		return totalPoints >= reqPoints - 8 && totalPoints <= reqPoints;
+		return totalPoints >= reqPoints - 4 && totalPoints <= reqPoints;
 	}
 
 	function updateMap(): DepartmentType[] {
@@ -27,13 +27,12 @@ function Coordinate() {
 			const progress = JSON.parse(prog) as ProgressType;
 
 			for (let i = 0; i < MAPS.length; i++) {
-				//
-				const dept = progress[MAPS[i].name]; // get specific dept from progress.
-				MAPS[i].isCleared = dept.isCleared; // modify the map arrays `isCleared`
-
-				const totalPoints = progress.totalPoints;
-				const reqPoints = DEPARTMENT_LEVEL[MAPS[i].name]; // get the required points.
-				MAPS[i].isActive = isInRange(totalPoints, reqPoints); // if true, then this department is is highest dept user can play as of now.
+				const deptIndex = progress.progress.findIndex(prog => prog.department === MAPS[i].name);
+				const dept = progress.progress[deptIndex];
+				const totalStars = progress.totalStars;
+				const reqStars = DEPARTMENT_LEVEL[MAPS[i].name]; // get the required stars.
+				MAPS[i].isActive = isInRange(totalStars, reqStars); // if true, then this department is is highest dept user can play as of now.
+				MAPS[i].isCleared = dept.stars >= reqStars;
 			}
 		}
 
@@ -43,7 +42,7 @@ function Coordinate() {
 	return (
 		<div className="grid grid-cols-3 gap-2">
 			{updateMap().map((map) => {
-				if (map.isActive) {
+				if (map.isActive && !map.isCleared) {
 					return <ActiveDept department={map} key={map.id} profile={profile} />;
 				}
 

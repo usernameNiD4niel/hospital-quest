@@ -25,25 +25,21 @@ function PromptModal({ department, onClose }: Props) {
 	}
 
 	function getDeptPoint() {
-		const deptStat = progress[department.name];
-		let noOfCorrectAns = 0;
-		for (let i = 1; i <= 5; ++i) {
-			if (deptStat[`q${i}`] === true) {
-				noOfCorrectAns += 1;
-			}
-		}
+		const deptIndex = progress.progress.findIndex(prog => prog.department === department.name);
+		const deptStat = progress.progress[deptIndex];
+		const noOfCorrectAns = deptStat.stars;
 
 		/**
 		 * Since each department has 10 points, we can get the difference of 10 to the correct answer that the user has made.
 		 */
-		return 10 - noOfCorrectAns;
+		return 5 - noOfCorrectAns;
 	}
 
 	function getPointsNeeds() {
-		const tp = progress.totalPoints;
-		const reqPoints = DEPARTMENT_LEVEL[department.name];
+		const ts = progress.totalStars;
+		const reqStars = DEPARTMENT_LEVEL[department.name];
 
-		return reqPoints - tp;
+		return reqStars - ts;
 	}
 
 	return (
@@ -51,7 +47,7 @@ function PromptModal({ department, onClose }: Props) {
 			<h2 className="font-bold md:text-2xl">Department: {department.name}</h2>
 			<ul className="list-disc list-inside text-sm md:text-base">
 				<li>
-					Department points:{" "}
+					Department stars:{" "}
 					<span className="font-semibold text-[var(--primary-color)]">
 						{getDeptPoint()}
 					</span>
@@ -64,7 +60,7 @@ function PromptModal({ department, onClose }: Props) {
 					.
 				</li>
 				<li>
-					Points needs to unlock next department:{" "}
+					Stars needs to unlock next the department:{" "}
 					<span className="font-semibold text-[var(--primary-color)]">
 						{getPointsNeeds()}
 					</span>

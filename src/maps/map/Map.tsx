@@ -97,7 +97,6 @@ function Map() {
 
 				const qa: QATypes[] = [];
 				let noOfCorrect = 0;
-				let gainedPoints = 0;
 				const prog = localStorage.getItem("progress");
 				let progress: null | ProgressType = null;
 
@@ -106,54 +105,62 @@ function Map() {
 				} else {
 					progress = PROGRESS;
 				}
-
 				for (let i = 0; i < theTruth.length; ++i) {
 					const truth = theTruth[i];
 					const isCorrect = answers[i] === truth.answer;
 
-					const isPrevCorrect = progress[department][`q${i + 1}`]; // if the current question answered the question correctly before.
 					if (isCorrect) {
-						if (!isPrevCorrect) {
-							gainedPoints += 2;
-							progress[department][`q${i + 1}`] = true;
-						}
-						++noOfCorrect; // ! fix this DANIEL!
+						++noOfCorrect;
 					}
 
 					qa.push({
-						answer: truth.answer,
+						answer: answers[i],
 						isCorrect,
 						question: truth.question,
 					});
 				}
+				
+				const deptIndex = progress.progress.findIndex(prog => prog.department === department); // if the current question answered the question correctly before.
+				console.log('dept index', JSON.stringify(deptIndex, null, 2));
+				
+				if(deptIndex !== -1) {
+					const finalProgress = progress.progress[deptIndex];
+					const prevStars = finalProgress.stars > noOfCorrect ? finalProgress.stars : noOfCorrect;
+					progress.progress[deptIndex].stars = prevStars;
+					console.log('no of correct', noOfCorrect, 'no of prev stars', finalProgress.stars);
+					const ts = (progress.totalStars - finalProgress.stars);
+					console.log('total stars', progress.totalStars, 'final progress', finalProgress.stars);
+					progress.totalStars = (ts > 0 ? ts : 0) + prevStars;
 
-				const overAll = progress.totalPoints + gainedPoints;
-				progress.totalPoints = overAll;
+				} else {
+					// First time playing this department
+					progress.progress.push({
+						department,
+						stars: noOfCorrect
+					});
+					progress.totalStars += noOfCorrect;
+				}
 
 				const level = DEPARTMENT_LEVEL[progress.currentDepartment];
 				const currDept = progress.currentDepartment;
 
 				/**
-				 * We do this since even though the user already unlocked the department that they are playing, we don't know if they've perfectly answered the question.
+				 * We do this even though the user already unlocked the department that they are playing, we don't know if they've perfectly answered the question.
 				 * If not then they can gain at least 2 points to that department resulting of points increase.
 				 */
-				if (overAll >= level) {
+				if (progress.totalStars >= level) {
 					// Means user unlock new department.
-					const keys = Object.keys(DEPARTMENT_LEVEL) as Departments[];
-					const index = keys.indexOf(currDept);
-					progress.currentDepartment = keys[index + 1];
+					const deptKeys = Object.keys(DEPARTMENT_LEVEL) as Departments[];
+					const index = deptKeys.indexOf(currDept);
+					progress.currentDepartment = deptKeys[index + 1];
 				}
-
-				const isCleared = noOfCorrect >= 4;
-				progress[department].isCleared = isCleared;
-				const canGoNext = isCleared;
 
 				localStorage.setItem("progress", JSON.stringify(progress));
 
 				setResult({
-					canGoNext,
+					canGoNext: noOfCorrect >= 4,
 					qa: qa,
-					gainedPoints,
+					gainedPoints: noOfCorrect,
 				});
 				setIsSubmit(true);
 				setCounter(undefined);
@@ -204,6 +211,7 @@ function Map() {
 				</div>
 			);
 		}
+
 		return (
 			<div>
 				<h3 className="text-lg font-bold">QA Finished</h3>

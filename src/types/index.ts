@@ -98,19 +98,29 @@ export interface QAResultType {
 	canGoNext: boolean;
 }
 
-export interface ProgressType
-	extends Record<
-		Departments,
-		{
-			/**
-			 * This will be use for storing the previous answer if they already answered the current question correctly.
-			 * e.g. `q1` = `true`
-			 */
-			[key: string]: boolean;
-			isCleared: boolean;
-		}
-	> {
-	totalPoints: number;
+export interface DeptProgressType {
+	/**
+	 * Current department selected.
+	 */
+	department: Departments;
+	/**
+	 * Number of stars gained to the selected department.
+	 */
+	stars: number;
+}
+
+export interface ProgressType {
+	/**
+	 * Overall summary of all the departments.
+	 */
+	progress: DeptProgressType[];
+	/**
+	 * Total number of stars gained.
+	 */
+	totalStars: number;
+	/**
+	 * Department that is recently user unlocked.
+	 */
 	currentDepartment: Departments;
 }
 

@@ -1,72 +1,46 @@
 import { DepartmentLevelType, Departments, ProgressType } from "../types";
 
 export const PROGRESS: ProgressType = {
-	totalPoints: 0,
+	progress: [
+		{
+			department: Departments["Emergency Room"],
+			stars: 0,
+		},
+		{
+			department: Departments["Delivery Room/Obgyne"],
+			stars: 0,
+		},
+		{
+			department: Departments["Operating Room"],
+			stars: 0,
+		},
+		{
+			department: Departments["Out-patient Department"],
+			stars: 0,
+		},
+		{
+			department: Departments["Surgical Wards"],
+			stars: 0,
+		},
+		{
+			department: Departments["Laboratory"],
+			stars: 0,
+		},
+		{
+			department: Departments["Medical Ward"],
+			stars: 0,
+		}
+	],
+	totalStars: 0,
 	currentDepartment: Departments["Emergency Room"],
-	"Emergency Room": {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
-	"Delivery Room/Obgyne": {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
-	"Operating Room": {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
-	"Out-patient Department": {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
-	"Surgical Wards": {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
-	Laboratory: {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
-	"Medical Ward": {
-		q1: false,
-		q2: false,
-		q3: false,
-		q4: false,
-		q5: false,
-		isCleared: false,
-	},
 };
 
 export const DEPARTMENT_LEVEL: DepartmentLevelType = {
-	"Emergency Room": 8,
-	"Operating Room": 16,
-	"Delivery Room/Obgyne": 24,
-	"Out-patient Department": 32,
-	"Surgical Wards": 40,
-	Laboratory: 48,
-	"Medical Ward": 56,
+	"Emergency Room": 4,
+	"Operating Room": 8,
+	"Delivery Room/Obgyne": 12,
+	"Out-patient Department": 16,
+	"Surgical Wards": 20,
+	Laboratory: 24,
+	"Medical Ward": 28,
 };
