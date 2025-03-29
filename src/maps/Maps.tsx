@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../css/Maps.css";
 import Coordinate from "./components/Coordinate";
 import FarmMapWeb from "../assets/farm-map-web.webp";
 import { CLOUD_IMAGES } from "../constants";
 import { getRandomValue } from "../utils";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 // Cloud Particle Component
 interface CloudParticleProps {
@@ -79,6 +80,7 @@ function Maps() {
 
 	return (
 		<div className="w-full flex items-center justify-center h-screen relative overflow-hidden bg-gradient-to-br from-[#9EC2C0] to-[#6AA6BD] flex-col">
+			<DisplayLoading />
 			<img
 				src={FarmMapWeb}
 				alt="Farm map image"
@@ -109,6 +111,33 @@ function Maps() {
 
 			{/* Optional: Overlay to darken/tint the background */}
 			{/* <div className="fixed inset-0 bg-black opacity-10"></div> */}
+		</div>
+	);
+}
+
+/**
+ * This component is responsible for loading the image without showing blank image.
+ * Shows loading component for 1.5 seconds
+ * @returns loading component
+ */
+function DisplayLoading() {
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setLoading(false);
+		}, 1500);
+
+		return () => clearTimeout(timer);
+	}, [loading]);
+
+	if (!loading) {
+		return null;
+	}
+
+	return (
+		<div className="fixed top-0 bottom-0 left-0 right-0 z-10 transition-opacity duration-150 ease-linear flex items-center justify-center bg-black">
+			<Loading />
 		</div>
 	);
 }
