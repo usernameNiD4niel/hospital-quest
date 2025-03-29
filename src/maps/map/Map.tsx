@@ -49,9 +49,10 @@ function Map() {
 	}, [counter]);
 
 	useEffect(() => {
-		if (question === 3) {
+		if (question === 3 && counter === undefined) {
 			setCounter(30);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [question]);
 
 	useEffect(() => {
@@ -119,40 +120,46 @@ function Map() {
 						question: truth.question,
 					});
 				}
-				
-				const deptIndex = progress.progress.findIndex(prog => prog.department === department); // if the current question answered the question correctly before.
-				console.log('dept index', JSON.stringify(deptIndex, null, 2));
-				
-				if(deptIndex !== -1) {
-					const finalProgress = progress.progress[deptIndex];
-					const prevStars = finalProgress.stars > noOfCorrect ? finalProgress.stars : noOfCorrect;
-					progress.progress[deptIndex].stars = prevStars;
-					console.log('no of correct', noOfCorrect, 'no of prev stars', finalProgress.stars);
-					const ts = (progress.totalStars - finalProgress.stars);
-					console.log('total stars', progress.totalStars, 'final progress', finalProgress.stars);
-					progress.totalStars = (ts > 0 ? ts : 0) + prevStars;
 
+				const deptIndex = progress.progress.findIndex(
+					(prog) => prog.department === department,
+				); // if the current question answered the question correctly before.
+				console.log("dept index", JSON.stringify(deptIndex, null, 2));
+
+				let ts = progress.totalStars;
+
+				if (deptIndex !== -1) {
+					const finalProgress = progress.progress[deptIndex];
+					const diff =
+						finalProgress.stars > noOfCorrect
+							? 0
+							: noOfCorrect - finalProgress.stars;
+					progress.progress[deptIndex].stars += diff;
+					ts += diff;
+					progress.totalStars = ts;
 				} else {
 					// First time playing this department
 					progress.progress.push({
 						department,
-						stars: noOfCorrect
+						stars: noOfCorrect,
 					});
 					progress.totalStars += noOfCorrect;
 				}
 
-				const level = DEPARTMENT_LEVEL[progress.currentDepartment];
+				const deptReqStars = DEPARTMENT_LEVEL[progress.currentDepartment];
 				const currDept = progress.currentDepartment;
 
 				/**
 				 * We do this even though the user already unlocked the department that they are playing, we don't know if they've perfectly answered the question.
 				 * If not then they can gain at least 2 points to that department resulting of points increase.
 				 */
-				if (progress.totalStars >= level) {
+				if (ts >= deptReqStars) {
 					// Means user unlock new department.
 					const deptKeys = Object.keys(DEPARTMENT_LEVEL) as Departments[];
 					const index = deptKeys.indexOf(currDept);
-					progress.currentDepartment = deptKeys[index + 1];
+					if (index !== -1) {
+						progress.currentDepartment = deptKeys[index + 1];
+					}
 				}
 
 				localStorage.setItem("progress", JSON.stringify(progress));

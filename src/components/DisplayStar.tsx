@@ -16,19 +16,19 @@ function DisplayStar({ department }: Props) {
 
 		if (prog) {
 			progress = JSON.parse(prog) as ProgressType;
-			const deptIndex = progress.progress.findIndex(prog => prog.department === department);
+			const deptIndex = progress.progress.findIndex(
+				(prog) => prog.department === department,
+			);
 			const deptStat = progress.progress[deptIndex];
 
 			for (let i = 1; i <= 5; ++i) {
-				if(deptStat.stars >= i) {
+				if (deptStat.stars >= i) {
 					activeStars.push(<FillStar pathFill="yellow" key={i} />);
 				} else {
 					inactiveStars.push(<Star pathFill="yellow" key={i} />);
 				}
 			}
-			console.log(deptStat);
 		}
-
 
 		console.log("active stars", activeStars, "inactive stars", inactiveStars);
 

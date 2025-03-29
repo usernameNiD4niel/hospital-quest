@@ -3,7 +3,6 @@ import Button from "../../components/Button";
 import LinkButton from "../../components/LinkButton";
 import { Departments, DepartmentType, ProgressType } from "../../types";
 import { PROGRESS } from "../../constants";
-import { DEPARTMENT_LEVEL } from "../../constants/history";
 
 interface Props {
 	department: DepartmentType;
@@ -25,7 +24,9 @@ function PromptModal({ department, onClose }: Props) {
 	}
 
 	function getDeptPoint() {
-		const deptIndex = progress.progress.findIndex(prog => prog.department === department.name);
+		const deptIndex = progress.progress.findIndex(
+			(prog) => prog.department === department.name,
+		);
 		const deptStat = progress.progress[deptIndex];
 		const noOfCorrectAns = deptStat.stars;
 
@@ -36,10 +37,17 @@ function PromptModal({ department, onClose }: Props) {
 	}
 
 	function getPointsNeeds() {
-		const ts = progress.totalStars;
-		const reqStars = DEPARTMENT_LEVEL[department.name];
+		let stars = 4;
+		const index = progress.progress.findIndex(
+			(x) => x.department === department.name,
+		);
 
-		return reqStars - ts;
+		if (index !== -1) {
+			stars = progress.progress[index].stars;
+			return 5 - stars;
+		}
+
+		return 5;
 	}
 
 	return (

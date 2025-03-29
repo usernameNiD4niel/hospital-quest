@@ -17,7 +17,14 @@ function Coordinate() {
 	const profile = profiles[Number(currentIndex)];
 
 	function isInRange(totalPoints: number, reqPoints: number): boolean {
-		return totalPoints >= reqPoints - 4 && totalPoints <= reqPoints;
+		/**
+		 * ER: total stars = 4
+		 * 	   required stars = 8
+		 * 	   sub = 8 - 4
+		 * We've placed this inside the loop so that the department required star will move the pointer.
+		 */
+		const req = reqPoints - totalPoints;
+		return req >= 1 && req <= 4;
 	}
 
 	function updateMap(): DepartmentType[] {
@@ -27,12 +34,16 @@ function Coordinate() {
 			const progress = JSON.parse(prog) as ProgressType;
 
 			for (let i = 0; i < MAPS.length; i++) {
-				const deptIndex = progress.progress.findIndex(prog => prog.department === MAPS[i].name);
-				const dept = progress.progress[deptIndex];
-				const totalStars = progress.totalStars;
-				const reqStars = DEPARTMENT_LEVEL[MAPS[i].name]; // get the required stars.
-				MAPS[i].isActive = isInRange(totalStars, reqStars); // if true, then this department is is highest dept user can play as of now.
-				MAPS[i].isCleared = dept.stars >= reqStars;
+				const deptIndex = progress.progress.findIndex(
+					(prog) => prog.department === MAPS[i].name,
+				);
+				if (deptIndex !== -1) {
+					const dept = progress.progress[deptIndex];
+					const totalStars = progress.totalStars;
+					const reqStars = DEPARTMENT_LEVEL[MAPS[i].name]; // get the required stars.
+					MAPS[i].isActive = isInRange(totalStars, reqStars); // if true, then this department is is highest dept user can play as of now.
+					MAPS[i].isCleared = dept.stars >= 4;
+				}
 			}
 		}
 
@@ -42,7 +53,7 @@ function Coordinate() {
 	return (
 		<div className="grid grid-cols-3 gap-2">
 			{updateMap().map((map) => {
-				if (map.isActive && !map.isCleared) {
+				if (map.isActive) {
 					return <ActiveDept department={map} key={map.id} profile={profile} />;
 				}
 
