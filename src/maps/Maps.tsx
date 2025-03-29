@@ -84,14 +84,14 @@ function Maps() {
 				alt="Farm map image"
 				width={2500}
 				height={2500}
-				className="w-screen h-screen hidden md:block"
+				className="w-screen h-screen hidden md:block pointer-events-none"
 			/>
 			<img
 				src="/farm-map.webp"
 				alt="Game map"
 				width={2200}
 				height={2200}
-				className="h-screen w-screen md:hidden"
+				className="h-screen w-screen md:hidden pointer-events-none"
 			/>
 
 			{/* Cloud Particles */}

@@ -19,13 +19,20 @@ function DisplayStar({ department }: Props) {
 			const deptIndex = progress.progress.findIndex(
 				(prog) => prog.department === department,
 			);
-			const deptStat = progress.progress[deptIndex];
 
-			for (let i = 1; i <= 5; ++i) {
-				if (deptStat.stars >= i) {
-					activeStars.push(<FillStar pathFill="yellow" key={i} />);
-				} else {
-					inactiveStars.push(<Star pathFill="yellow" key={i} />);
+			if (deptIndex !== -1) {
+				const deptStat = progress.progress[deptIndex];
+
+				if (deptStat.stars === 0) {
+					return null;
+				}
+
+				for (let i = 1; i <= 5; ++i) {
+					if (deptStat.stars >= i) {
+						activeStars.push(<FillStar pathFill="yellow" key={i} />);
+					} else {
+						inactiveStars.push(<Star pathFill="yellow" key={i} />);
+					}
 				}
 			}
 		}

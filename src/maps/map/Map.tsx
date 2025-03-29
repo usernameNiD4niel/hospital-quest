@@ -157,7 +157,7 @@ function Map() {
 					// Means user unlock new department.
 					const deptKeys = Object.keys(DEPARTMENT_LEVEL) as Departments[];
 					const index = deptKeys.indexOf(currDept);
-					if (index !== -1) {
+					if (index !== -1 && noOfCorrect >= 4) {
 						progress.currentDepartment = deptKeys[index + 1];
 					}
 				}

@@ -4,7 +4,6 @@ import ActiveDept from "./ActiveDept";
 import ClearedDept from "./ClearedDept";
 import LockedDept from "./LockedDept";
 import { DepartmentType, ProgressType } from "../../types";
-import { DEPARTMENT_LEVEL } from "../../constants/history";
 
 function Coordinate() {
 	let currentIndex = localStorage.getItem("currentIndex");
@@ -15,17 +14,6 @@ function Coordinate() {
 	}
 
 	const profile = profiles[Number(currentIndex)];
-
-	function isInRange(totalPoints: number, reqPoints: number): boolean {
-		/**
-		 * ER: total stars = 4
-		 * 	   required stars = 8
-		 * 	   sub = 8 - 4
-		 * We've placed this inside the loop so that the department required star will move the pointer.
-		 */
-		const req = reqPoints - totalPoints;
-		return req >= 1 && req <= 4;
-	}
 
 	function updateMap(): DepartmentType[] {
 		const prog = localStorage.getItem("progress");
@@ -39,9 +27,7 @@ function Coordinate() {
 				);
 				if (deptIndex !== -1) {
 					const dept = progress.progress[deptIndex];
-					const totalStars = progress.totalStars;
-					const reqStars = DEPARTMENT_LEVEL[MAPS[i].name]; // get the required stars.
-					MAPS[i].isActive = isInRange(totalStars, reqStars); // if true, then this department is is highest dept user can play as of now.
+					MAPS[i].isActive = progress.currentDepartment === MAPS[i].name; // if true, then this department is is highest dept user can play as of now.
 					MAPS[i].isCleared = dept.stars >= 4;
 				}
 			}
