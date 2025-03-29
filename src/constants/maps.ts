@@ -15,12 +15,28 @@ export const LAB_COOR_CLASS =
 export const MW_COOR_CLASS =
 	"absolute top-[33vh] md:top-[25vh] left-[58vw] md:left-[53vw]"; // Medical Ward
 
+export const ER_LINE_COOR_CLASS =
+	"w-[90px] md:w-45 h-px bg-transparent border-t-4 border-t-green-500 absolute rotate-145 top-7 left-5 md:left-20 md:top-3 md:-rotate-[30deg]";
+export const OR_LINE_COOR_CLASS =
+	"w-[410px] h-px bg-transparent border-t-4 border-t-green-500 absolute rotate-160 left-1 top-13";
+export const DR_OB_LINE_COOR_CLASS =
+	"w-full h-px bg-transparent border-t-4 border-t-green-500 absolute -rotate-145 left-17 top-9";
+export const OPD_LINE_COOR_CLASS =
+	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
+export const SW_LINE_COOR_CLASS =
+	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
+export const LAB_LINE_COOR_CLASS =
+	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
+export const MW_LINE_COOR_CLASS =
+	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
+
 export const MAPS: DepartmentType[] = [
 	{
 		id: 1,
 		name: Departments["Emergency Room"],
 		isCleared: false,
 		className: ER_COOR_CLASS,
+		lineClass: ER_LINE_COOR_CLASS,
 		isActive: true,
 	},
 	{
@@ -28,6 +44,7 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Operating Room"],
 		isCleared: false,
 		className: OR_COOR_CLASS,
+		lineClass: OR_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -35,6 +52,7 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Delivery Room/Obgyne"],
 		isCleared: false,
 		className: DR_OB_COOR_CLASS,
+		lineClass: DR_OB_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -42,6 +60,7 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Out-patient Department"],
 		isCleared: false,
 		className: OPD_COOR_CLASS,
+		lineClass: OPD_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -49,6 +68,7 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Surgical Wards"],
 		isCleared: false,
 		className: SW_COOR_CLASS,
+		lineClass: SW_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -56,6 +76,7 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Laboratory"],
 		isCleared: false,
 		className: LAB_COOR_CLASS,
+		lineClass: LAB_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -63,6 +84,7 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Medical Ward"],
 		isCleared: false,
 		className: MW_COOR_CLASS,
+		lineClass: MW_LINE_COOR_CLASS,
 		isActive: false,
 	},
 ];
