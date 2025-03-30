@@ -46,9 +46,9 @@ function BackgroundAudio() {
 		<div className="fixed top-4 right-4 p-2 bg-white z-10 bg-opacity-80 rounded shadow-md">
 			<button
 				onClick={handleClick}
-				className="flex items-center space-x-1 cursor-pointer text-sm">
+				className="flex items-center space-x-1 cursor-pointer text-sm justify-center">
 				<DisplaySettings />
-				<span>Settings</span>
+				<span className="hidden md:block">Settings</span>
 			</button>
 			<audio ref={audioRef} src="/thankyou.mp3" loop hidden />
 

@@ -18,11 +18,11 @@ export const MW_COOR_CLASS =
 export const ER_LINE_COOR_CLASS =
 	"w-[90px] md:w-45 h-px bg-transparent border-t-4 border-t-green-500 absolute rotate-145 top-7 left-5 md:left-20 md:top-3 md:-rotate-[30deg]";
 export const OR_LINE_COOR_CLASS =
-	"w-[410px] h-px bg-transparent border-t-4 border-t-green-500 absolute rotate-160 left-1 top-13";
+	"w-[60px] md:w-[410px] h-px bg-transparent border-t-4 border-t-green-500 absolute left-5 top-7 rotate-100 md:rotate-160 md:left-1 md:top-13";
 export const DR_OB_LINE_COOR_CLASS =
 	"w-full h-px bg-transparent border-t-4 border-t-green-500 absolute -rotate-145 left-17 top-9";
 export const OPD_LINE_COOR_CLASS =
-	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
+	"w-full h-px bg-transparent border-t-4 border-t-green-500 absolute -rotate-145 left-17 top-9";
 export const SW_LINE_COOR_CLASS =
 	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
 export const LAB_LINE_COOR_CLASS =
