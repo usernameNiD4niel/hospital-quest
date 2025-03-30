@@ -49,7 +49,7 @@ function AlertModal({
 		<AnimatePresence>
 			<div
 				className={
-					"w-full h-screen fixed overflow-hidden flex items-center justify-center inset-0 z-10"
+					"w-full h-screen fixed overflow-hidden flex items-center justify-center inset-0 z-50"
 				}>
 				<motion.div
 					className="w-screen absolute h-screen bg-black opacity-30"
@@ -61,7 +61,7 @@ function AlertModal({
 				/>
 				<motion.div
 					className={twMerge(
-						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[600px] bg-white z-10 flex flex-col p-4 relative",
+						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[90vh] bg-white overflow-y-auto z-10 flex flex-col p-4 relative",
 						className,
 					)}
 					initial={{ opacity: 0, scale: 0.7 }}

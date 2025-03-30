@@ -1,13 +1,17 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "destructive";
 
 const buttonClass: Record<ButtonVariant, string> = {
-	"primary": "bg-primary disabled:cursor-not-allowed",
-	"secondary": "bg-secondary disabled:bg-secondary/50 disabled:cursor-not-allowed",
-	"ghost": "bg-transparent hover:cursor-pointer text-black hover:bg-slate-200 transition-all duration-150 ease-linear disabled:cursor-not-allowed"
-}
+	primary: "bg-primary disabled:cursor-not-allowed",
+	secondary:
+		"bg-secondary disabled:bg-secondary/50 disabled:cursor-not-allowed",
+	ghost:
+		"bg-transparent hover:cursor-pointer text-black hover:bg-slate-200 transition-all duration-150 ease-linear disabled:cursor-not-allowed",
+	destructive:
+		"bg-transparent hover:cursor-pointer border rounded-md border-red-500 text-red-500 hover:bg-red-500/10 hover:text-red-700 transition-background duration-150 ease-linear",
+};
 
 interface ButtonProps
 	extends React.DetailedHTMLProps<
@@ -28,12 +32,21 @@ interface ButtonProps
 	variant?: ButtonVariant;
 }
 
-function Button({ text = "Let's go!", className, variant = "primary", ...props }: ButtonProps) {
+function Button({
+	text = "Let's go!",
+	className,
+	variant = "primary",
+	...props
+}: ButtonProps) {
 	return (
 		<button
 			{...props}
-			className={twMerge("w-full cursor-pointer py-3 rounded-lg text-white text-sm", className, buttonClass[variant], props.disabled && "bg-slate-500/30")}
-		>
+			className={twMerge(
+				"w-full cursor-pointer py-3 rounded-lg text-white text-sm",
+				className,
+				buttonClass[variant],
+				props.disabled && "bg-slate-500/30",
+			)}>
 			{text}
 		</button>
 	);
