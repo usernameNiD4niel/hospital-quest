@@ -92,166 +92,352 @@ export const MAPS: DepartmentType[] = [
 export const ER_QUESTIONS: QuestionOptionsType[] = [
 	{
 		question:
-			"What is the most common initial assessment tool used to determine the severity of a patient's condition in the ER?",
-		answer: "B) Triage Scale",
+			"The first step in the primary survey of trauma patients is assessing _______",
+		answer: "C) Airway",
 		options: [
-			"A) Glasgow Coma Scale",
-			"B) Triage Scale",
-			"C) Morse Fall Scale",
-			"D) APGAR Score",
+			"A) Circulation",
+			"B) Breathing",
+			"C) Airway",
+			"D) Disability",
 		],
 	},
 	{
 		question:
-			"Which of the following conditions would be classified as a Level 1 priority in the ER?",
-		answer: "B) Chest pain with shortness of breath",
+			"A patient with a minor cut should be prioritized over a patient with chest pain.",
+		answer: "B) False",
 		options: [
-			"A) Broken arm with mild pain",
-			"B) Chest pain with shortness of breath",
-			"C) Mild headache",
-			"D) Minor laceration",
+			"A) True",
+			"B) False"
 		],
 	},
 	{
 		question:
-			"When administering CPR, what is the recommended compression-to-ventilation ratio for an adult patient with no advanced airway?",
-		answer: "B) 30:2",
-		options: ["A) 15:2", "B) 30:2", "C) 20:5", "D) 40:2"],
+			"Which of the following is the best way to assess shock in an emergency setting?",
+		answer: "B) Urine output",
+		options: ["A) Blood pressure", "B) Urine output", "C) Capillary refill", "D) Heart rate"],
 	},
 	{
 		question:
-			'What does the acronym "FAST" stand for when assessing a potential stroke patient?',
-		answer: "A) Face, Arms, Speech, Time",
+			'A patient with a suspected stroke should have a _______ scan immediately.',
+		answer: "C) CT",
 		options: [
-			"A) Face, Arms, Speech, Time",
-			"B) First Aid, Shock, Trauma",
-			"C) Fingers, Arms, Stability, Triage",
-			"D) Fluid, Airway, Stabilization, Temperature",
+			"A) X-ray",
+			"B) MRI",
+			"C) CT",
+			"D) Ultrasound",
 		],
 	},
 	{
 		question:
-			"What is the first-line medication used to treat anaphylaxis in the ER?",
-		answer: "C) Epinephrine",
+			"Needle decompression is performed in the second intercostal space for a tension pneumothorax.",
+		answer: "A) True",
 		options: [
-			"A) Diphenhydramine",
-			"B) Albuterol",
-			"C) Epinephrine",
-			"D) Prednisone",
+			"A) True",
+			"B) False",
 		],
 	},
 ];
 
 export const OR_QUESTIONS: QuestionOptionsType[] = [
 	{
-		question: 'What is the purpose of the "time-out" procedure in the OR?',
-		answer: "B) To confirm the patient’s identity, procedure, and site",
+		question: 'The nurse responsible for maintaining sterility in the OR is the _______.',
+		answer: "A) True",
 		options: [
-			"A) To allow the surgical team to rest",
-			"B) To confirm the patient’s identity, procedure, and site",
-			"C) To review post-operative care",
-			"D) To document the surgery duration",
+			"A) True",
+			"B) False"
 		],
 	},
 	{
 		question:
-			"During surgery, what is the correct order for donning sterile gloves?",
-		answer: "A) Dominant hand first, then non-dominant hand",
+			"Surgical instruments must be sterilized before every procedure.",
+		answer: "A) True",
 		options: [
-			"A) Dominant hand first, then non-dominant hand",
-			"B) Non-dominant hand first, then dominant hand",
-			"C) Both hands at the same time",
-			"D) It doesn't matter which hand is gloved first",
+			"A) True",
+			"B) False"
 		],
 	},
 	{
 		question:
-			"Which instrument is commonly used for clamping blood vessels during surgery?",
-		answer: "C) Hemostat",
-		options: ["A) Scalpel", "B) Forceps", "C) Hemostat", "D) Retractor"],
-	},
-	{
-		question:
-			"What is the most common cause of post-operative infection in the OR?",
-		answer: "A) Poor hand hygiene",
+			"What is the main purpose of a surgical time-out?",
+		answer: "B) Confirm the correct patient, site, and procedure",
 		options: [
-			"A) Poor hand hygiene",
-			"B) Incorrect suture technique",
-			"C) Inadequate sterilization of instruments",
-			"D) Cross-contamination from surgical team",
+			"A) Ensure sterility of instruments",
+			"B) Confirm the correct patient, site, and procedure",
+			"C) Allow the surgeon to review the case",
+			"D) Prevent surgical site infections",
 		],
 	},
 	{
 		question:
-			"Which anesthesia type renders the patient unconscious during surgery?",
-		answer: "C) General anesthesia",
+			"The most common complication of general anesthesia is _______.",
+		answer: "B) Nausea and vomiting",
+		options: ["A) Hypertension", "B) Nausea and vomiting", "C) Hyperkalemia", "D) Hypoglycemia"],
+	},
+	{
+		question:
+			"A patient under spinal anesthesia can breathe independently.",
+		answer: "A) True",
 		options: [
-			"A) Local anesthesia",
-			"B) Regional anesthesia",
-			"C) General anesthesia",
-			"D) Epidural anesthesia",
+			"A) True",
+			"B) False"
 		],
 	},
 ];
 
 export const DROB_QUESTIONS: QuestionOptionsType[] = [
 	{
-		question: "What is the normal fetal heart rate range during labor?",
-		answer: "B) 110-160 bpm",
+		question: "The normal fetal heart rate is _______ beats per minute.",
+		answer: "C) 110-160",
 		options: [
-			"A) 60-100 bpm",
-			"B) 110-160 bpm",
-			"C) 90-120 bpm",
-			"D) 140-200 bpm",
+			"A) 60-100",
+			"B) 80-120",
+			"C) 110-160",
+			"D) 140-180",
 		],
 	},
 	{
 		question:
-			"What is the term used to describe the thinning and shortening of the cervix during labor?",
-		answer: "B) Effacement",
-		options: ["A) Dilation", "B) Effacement", "C) Crowning", "D) Station"],
+			"The presence of meconium in amniotic fluid indicates potential fetal distress.",
+		answer: "A) True",
+		options: ["A) True", "B) False"],
 	},
 	{
 		question:
-			"Which of the following is a common complication of labor that may require an emergency C-section?",
-		answer: "A) Pre-eclampsia",
+			"What is the first priority in newborn care immediately after birth?",
+		answer: "C) Ensure proper thermoregulation and airway clearance",
 		options: [
-			"A) Pre-eclampsia",
-			"B) Braxton Hicks contractions",
-			"C) Mild back pain",
-			"D) Morning sickness",
+			"A) Initiate breastfeeding",
+			"B) Perform a full physical exam",
+			"C) Ensure proper thermoregulation and airway clearance",
+			"D) Measure weight and length",
 		],
 	},
 	{
 		question:
-			"During delivery, what is the recommended intervention for shoulder dystocia?",
-		answer: "A) McRoberts maneuver",
+			"The hormone responsible for uterine contractions during labor is _______.",
+		answer: "B) Oxytocin",
 		options: [
-			"A) McRoberts maneuver",
-			"B) Valsalva maneuver",
-			"C) Trendelenburg position",
-			"D) Heimlich maneuver",
+			"A) Estrogen",
+			"B) Oxytocin",
+			"C) Progesterone",
+			"D) Prolactin",
 		],
 	},
 	{
 		question:
-			"What medication is commonly given to promote uterine contractions after delivery?",
-		answer: "A) Oxytocin",
+			"Postpartum hemorrhage (PPH) is defined as blood loss exceeding ____ mL within 24 hours of delivery.",
+		answer: "B) 500",
 		options: [
-			"A) Oxytocin",
-			"B) Magnesium sulfate",
-			"C) Heparin",
-			"D) Naloxone",
+			"A) 300",
+			"B) 500",
+			"C) 250",
+			"D) 1000",
 		],
 	},
 ];
+
+export const OPD_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: "The first step in assessing a patient in OPD is _______.",
+		answer: "D) Interviewing the patient",
+		options: [
+			"A) Physical examination",
+			"B) Vital signs assessment",
+			"C) Reviewing laboratory tests",
+			"D) Interviewing the patient",
+		],
+	},
+	{
+		question: "OPD patients are typically admitted for 24-hour monitoring.",
+		answer: "B) False",
+		options: [
+			"A) True",
+			"B) False"
+		],
+	},
+	{
+		question: "A patient presenting with mild hypertension in OPD should be advised to:",
+		answer: "B) Modify diet and exercise before medication is considered",
+		options: [
+			"A) Immediately take antihypertensive drugs",
+			"B) Modify diet and exercise before medication is considered",
+			"C) Get admitted for IV therapy",
+			"D) Undergo immediate surgery"
+		],
+	},
+	{
+		question: "A screening test for diabetes in OPD is the _______ test.",
+		answer: "B) Fasting blood sugar",
+		options: [
+			"A) ECG",
+			"B) Fasting blood sugar",
+			"C) MRI",
+			"D) X-ray"
+		],
+	},
+	{
+		question: "OPD visits usually involve short-term care and follow-up.",
+		answer: "A) True",
+		options: [
+			"A) True",
+			"B) False",
+		],
+	},
+]
+
+export const SW_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: "The primary concern for post-operative patients is _______.",
+		answer: "D) All of the above",
+		options: [
+			"A) Pain management",
+			"B) Infection prevention",
+			"C) Early ambulation",
+			"D) All of the above",
+		],
+	},
+	{
+		question: "A patient who has undergone surgery should remain in bed for at least a week.",
+		answer: "B) False",
+		options: [
+			"A) True",
+			"B) False"
+		],
+	},
+	{
+		question: "Which of the following is a sign of post-operative infection?",
+		answer: "B) Redness with pus discharge",
+		options: [
+			"A) Mild swelling",
+			"B) Redness with pus discharge",
+			"C) Low-grade fever for 24 hours",
+			"D) Slight pain at the incision site"
+		],
+	},
+	{
+		question: "To prevent deep vein thrombosis (DVT) in post-op patients, nurses should encourage _______.",
+		answer: "C) Early ambulation and leg exercises",
+		options: [
+			"A) Complete bed rest",
+			"B) Leg elevation without movement",
+			"C) Early ambulation and leg exercises",
+			"D) Ice pack application"
+		],
+	},
+	{
+		question: "A Jackson-Pratt drain is used to remove fluids from a surgical site.",
+		answer: "A) True",
+		options: [
+			"A) True",
+			"B) False",
+		],
+	},
+]
+
+export const LR_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: "The most common site for venipuncture is the _______ vein.",
+		answer: "D) Median cubital",
+		options: [
+			"A) Radial",
+			"B) Cephalic",
+			"C) Basilic",
+			"D) Median cubital",
+		],
+	},
+	{
+		question: "A tourniquet should be left on the arm for more than 5 minutes to ensure proper blood collection.",
+		answer: "B) False",
+		options: [
+			"A) True",
+			"B) False"
+		],
+	},
+	{
+		question: "You are preparing to perform a venipuncture. Which of the following is the MOST important step to ensure patient safety and accurate results?",
+		answer: "C) Properly identifying the patient and verifying the test order.",
+		options: [
+			"A) Using a large-gauge needle to speed up the process.",
+			"B) Ignoring the patient's report of previous difficult draws.",
+			"C) Properly identifying the patient and verifying the test order.",
+			"D) Wearing gloves only after the needle is inserted."
+		],
+	},
+	{
+		question: "A test used to check for kidney function is the _______ test.",
+		answer: "B) Creatinine and BUN",
+		options: [
+			"A) Lipid profile",
+			"B) Creatinine and BUN",
+			"C) ECG",
+			"D) Liver function test"
+		],
+	},
+	{
+		question: "A complete blood count (CBC) is used to assess overall health and detect a variety of disorders.",
+		answer: "A) True",
+		options: [
+			"A) True",
+			"B) False",
+		],
+	},
+]
+
+export const MW_QUESTIONS: QuestionOptionsType[] = [
+	{
+		question: "The primary goal in managing pneumonia in the medical ward is _______.",
+		answer: "B) Oxygenation and infection treatment",
+		options: [
+			"A) Pain control",
+			"B) Oxygenation and infection treatment",
+			"C) Isolation precautions",
+			"D) Physical therapy",
+		],
+	},
+	{
+		question: "Patients with hypertension should be encouraged to eat high-sodium foods.",
+		answer: "B) False",
+		options: [
+			"A) True",
+			"B) False"
+		],
+	},
+	{
+		question: "The best position for a patient with difficulty breathing is__________.:",
+		answer: "C) Fowler’s",
+		options: [
+			"A) Supine",
+			"B) Prone",
+			"C) Fowler’s",
+			"D) Trendelenburg"
+		],
+	},
+	{
+		question: "The first-line treatment for a mild allergic reaction is?",
+		answer: "B) Antihistamines",
+		options: [
+			"A) Epinephrine",
+			"B) Antihistamines",
+			"C) Oxygen therapy",
+			"D) Steroids"
+		],
+	},
+	{
+		question: "Diabetes management includes diet, exercise, and medication adherence.",
+		answer: "A) True",
+		options: [
+			"A) True",
+			"B) False",
+		],
+	},
+]
 
 export const QUESTIONS: Record<Departments, QuestionOptionsType[]> = {
 	"Emergency Room": ER_QUESTIONS,
 	"Operating Room": OR_QUESTIONS,
 	"Delivery Room/Obgyne": DROB_QUESTIONS,
-	"Medical Ward": [],
-	"Out-patient Department": [],
-	"Surgical Wards": [],
-	Laboratory: [],
+	"Medical Ward": MW_QUESTIONS,
+	"Out-patient Department": OPD_QUESTIONS,
+	"Surgical Wards": SW_QUESTIONS,
+	Laboratory: LR_QUESTIONS,
 };
