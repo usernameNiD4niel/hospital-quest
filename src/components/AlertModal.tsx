@@ -61,7 +61,7 @@ function AlertModal({
 				/>
 				<motion.div
 					className={twMerge(
-						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[90vh] bg-white overflow-y-auto z-10 flex flex-col p-4 relative",
+						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[90vh] bg-white overflow-y-auto z-50 flex flex-col p-4 relative",
 						className,
 					)}
 					initial={{ opacity: 0, scale: 0.7 }}
