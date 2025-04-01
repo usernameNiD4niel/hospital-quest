@@ -65,7 +65,7 @@ function Map() {
 	}, [navigate, department]);
 
 	function reset() {
-		setCounter(30);
+		setCounter(undefined);
 		localStorage.removeItem("__questions__");
 		setQuestion(0);
 		setIsSubmit(false);
