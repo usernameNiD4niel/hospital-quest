@@ -1,34 +1,19 @@
 import { Departments, DepartmentType, QuestionOptionsType } from "../types";
 
 export const ER_COOR_CLASS =
-	"absolute top-[calc(100vh-(48vh+10px))] md:top-[calc(100vh-(25vh+60px))] right-[40vw] md:right-[35vw]"; // Emergency Room
+	"absolute top-[calc(100vh-50vh)] right-[38vw] sm:right-[40vw] md:right-[30vw] lg:right-[33vw] xl:right-[34vw] 2xl:right-[35vw] md:top-[calc(100vh-(32vh))]"; // Emergency Room
 export const OR_COOR_CLASS =
-	"absolute top-[calc(100vh-41vh)] md:top-[calc(100vh-(50vh-60px))] right-[60vw] md:right-[25vw]"; // Operating Room
+	"absolute top-[calc(100vh-41vh)] right-[57vw] sm:right-[59vw] md:top-[calc(100vh-45vh)] md:right-[20vw] lg:right-[22vw] xl:right-[24vw] 2xl:right-[25vw]"; // Operating Room
 export const DR_OB_COOR_CLASS =
-	"absolute bottom-[23vh] md:bottom-[21vh] right-[calc(63vw+30px)] md:right-[52vw]"; // Delivery Room/Obgyne
+	"absolute bottom-[22vh] md:bottom-[20%] right-[67vw] sm:right-[69vw] md:right-[46vw] lg:right-[48vw] xl:right-[50vw] 2xl:right-[51vw]"; // Delivery Room/Obgyne
 export const OPD_COOR_CLASS =
-	"absolute bottom-[31vh] md:bottom-[32vh] left-[45vw] md:left-[calc(30vw+10px)]"; // Out-patient Department
+	"absolute bottom-[31vh] left-[42vw] sm:left-[45vw] md:bottom-[32vh] md:left-[25vw] lg:left-[27vw] xl:left-[29vw] 2xl:left-[31vw]"; // Out-patient Department
 export const SW_COOR_CLASS =
-	"absolute top-[55vh] md:top-[51vh] right-[28vw] md:right-[53vw]"; // Surgical Wards
+	"absolute top-[55vh] md:top-[51vh] right-[28vw] md:right-[50vw] lg:right-[52vw] xl:right-[53vw]"; // Surgical Wards
 export const LAB_COOR_CLASS =
-	"absolute top-[49vh] md:top-[38vh] right-[69vw] md:right-[62vw]"; // Laboratory
+	"absolute top-[49vh] md:top-[38vh] right-[69vw] md:right-[58vw] lg:right-[60vw] xl:right-[62vw]"; // Laboratory
 export const MW_COOR_CLASS =
-	"absolute top-[33vh] md:top-[25vh] left-[58vw] md:left-[53vw]"; // Medical Ward
-
-export const ER_LINE_COOR_CLASS =
-	"w-[90px] md:w-45 h-px bg-transparent border-t-4 border-t-green-500 absolute rotate-145 top-7 left-5 md:left-20 md:top-3 md:-rotate-[30deg]";
-export const OR_LINE_COOR_CLASS =
-	"w-[60px] md:w-[410px] h-px bg-transparent border-t-4 border-t-green-500 absolute left-5 top-7 rotate-100 md:rotate-160 md:left-1 md:top-13";
-export const DR_OB_LINE_COOR_CLASS =
-	"w-full h-px bg-transparent border-t-4 border-t-green-500 absolute -rotate-145 left-17 top-9";
-export const OPD_LINE_COOR_CLASS =
-	"w-full h-px bg-transparent border-t-4 border-t-green-500 absolute -rotate-145 left-17 top-9";
-export const SW_LINE_COOR_CLASS =
-	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
-export const LAB_LINE_COOR_CLASS =
-	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
-export const MW_LINE_COOR_CLASS =
-	"w-72 rounded-full h-60 bg-transparent border-t-4 border-dashed border-green-500 absolute -top-3 left-3";
+	"absolute top-[33vh] md:top-[25vh] left-[58vw] md:left-[49vw] lg:left-[51vw] xl:left-[53vw]"; // Medical Ward
 
 export const MAPS: DepartmentType[] = [
 	{
@@ -36,7 +21,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Emergency Room"],
 		isCleared: false,
 		className: ER_COOR_CLASS,
-		lineClass: ER_LINE_COOR_CLASS,
 		isActive: true,
 	},
 	{
@@ -44,7 +28,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Operating Room"],
 		isCleared: false,
 		className: OR_COOR_CLASS,
-		lineClass: OR_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -52,7 +35,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Delivery Room/Obgyne"],
 		isCleared: false,
 		className: DR_OB_COOR_CLASS,
-		lineClass: DR_OB_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -60,7 +42,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Out-patient Department"],
 		isCleared: false,
 		className: OPD_COOR_CLASS,
-		lineClass: OPD_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -68,7 +49,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Surgical Wards"],
 		isCleared: false,
 		className: SW_COOR_CLASS,
-		lineClass: SW_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -76,7 +56,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Laboratory"],
 		isCleared: false,
 		className: LAB_COOR_CLASS,
-		lineClass: LAB_LINE_COOR_CLASS,
 		isActive: false,
 	},
 	{
@@ -84,7 +63,6 @@ export const MAPS: DepartmentType[] = [
 		name: Departments["Medical Ward"],
 		isCleared: false,
 		className: MW_COOR_CLASS,
-		lineClass: MW_LINE_COOR_CLASS,
 		isActive: false,
 	},
 ];
@@ -94,71 +72,53 @@ export const ER_QUESTIONS: QuestionOptionsType[] = [
 		question:
 			"The first step in the primary survey of trauma patients is assessing _______",
 		answer: "C) Airway",
-		options: [
-			"A) Circulation",
-			"B) Breathing",
-			"C) Airway",
-			"D) Disability",
-		],
+		options: ["A) Circulation", "B) Breathing", "C) Airway", "D) Disability"],
 	},
 	{
 		question:
 			"A patient with a minor cut should be prioritized over a patient with chest pain.",
 		answer: "B) False",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
 		question:
 			"Which of the following is the best way to assess shock in an emergency setting?",
 		answer: "B) Urine output",
-		options: ["A) Blood pressure", "B) Urine output", "C) Capillary refill", "D) Heart rate"],
+		options: [
+			"A) Blood pressure",
+			"B) Urine output",
+			"C) Capillary refill",
+			"D) Heart rate",
+		],
 	},
 	{
 		question:
-			'A patient with a suspected stroke should have a _______ scan immediately.',
+			"A patient with a suspected stroke should have a _______ scan immediately.",
 		answer: "C) CT",
-		options: [
-			"A) X-ray",
-			"B) MRI",
-			"C) CT",
-			"D) Ultrasound",
-		],
+		options: ["A) X-ray", "B) MRI", "C) CT", "D) Ultrasound"],
 	},
 	{
 		question:
 			"Needle decompression is performed in the second intercostal space for a tension pneumothorax.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False",
-		],
+		options: ["A) True", "B) False"],
 	},
 ];
 
 export const OR_QUESTIONS: QuestionOptionsType[] = [
 	{
-		question: 'The nurse responsible for maintaining sterility in the OR is the _______.',
+		question:
+			"The nurse responsible for maintaining sterility in the OR is the _______.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
-		question:
-			"Surgical instruments must be sterilized before every procedure.",
+		question: "Surgical instruments must be sterilized before every procedure.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
-		question:
-			"What is the main purpose of a surgical time-out?",
+		question: "What is the main purpose of a surgical time-out?",
 		answer: "B) Confirm the correct patient, site, and procedure",
 		options: [
 			"A) Ensure sterility of instruments",
@@ -168,19 +128,19 @@ export const OR_QUESTIONS: QuestionOptionsType[] = [
 		],
 	},
 	{
-		question:
-			"The most common complication of general anesthesia is _______.",
+		question: "The most common complication of general anesthesia is _______.",
 		answer: "B) Nausea and vomiting",
-		options: ["A) Hypertension", "B) Nausea and vomiting", "C) Hyperkalemia", "D) Hypoglycemia"],
+		options: [
+			"A) Hypertension",
+			"B) Nausea and vomiting",
+			"C) Hyperkalemia",
+			"D) Hypoglycemia",
+		],
 	},
 	{
-		question:
-			"A patient under spinal anesthesia can breathe independently.",
+		question: "A patient under spinal anesthesia can breathe independently.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 ];
 
@@ -188,12 +148,7 @@ export const DROB_QUESTIONS: QuestionOptionsType[] = [
 	{
 		question: "The normal fetal heart rate is _______ beats per minute.",
 		answer: "C) 110-160",
-		options: [
-			"A) 60-100",
-			"B) 80-120",
-			"C) 110-160",
-			"D) 140-180",
-		],
+		options: ["A) 60-100", "B) 80-120", "C) 110-160", "D) 140-180"],
 	},
 	{
 		question:
@@ -216,23 +171,13 @@ export const DROB_QUESTIONS: QuestionOptionsType[] = [
 		question:
 			"The hormone responsible for uterine contractions during labor is _______.",
 		answer: "B) Oxytocin",
-		options: [
-			"A) Estrogen",
-			"B) Oxytocin",
-			"C) Progesterone",
-			"D) Prolactin",
-		],
+		options: ["A) Estrogen", "B) Oxytocin", "C) Progesterone", "D) Prolactin"],
 	},
 	{
 		question:
 			"Postpartum hemorrhage (PPH) is defined as blood loss exceeding ____ mL within 24 hours of delivery.",
 		answer: "B) 500",
-		options: [
-			"A) 300",
-			"B) 500",
-			"C) 250",
-			"D) 1000",
-		],
+		options: ["A) 300", "B) 500", "C) 250", "D) 1000"],
 	},
 ];
 
@@ -250,40 +195,30 @@ export const OPD_QUESTIONS: QuestionOptionsType[] = [
 	{
 		question: "OPD patients are typically admitted for 24-hour monitoring.",
 		answer: "B) False",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
-		question: "A patient presenting with mild hypertension in OPD should be advised to:",
+		question:
+			"A patient presenting with mild hypertension in OPD should be advised to:",
 		answer: "B) Modify diet and exercise before medication is considered",
 		options: [
 			"A) Immediately take antihypertensive drugs",
 			"B) Modify diet and exercise before medication is considered",
 			"C) Get admitted for IV therapy",
-			"D) Undergo immediate surgery"
+			"D) Undergo immediate surgery",
 		],
 	},
 	{
 		question: "A screening test for diabetes in OPD is the _______ test.",
 		answer: "B) Fasting blood sugar",
-		options: [
-			"A) ECG",
-			"B) Fasting blood sugar",
-			"C) MRI",
-			"D) X-ray"
-		],
+		options: ["A) ECG", "B) Fasting blood sugar", "C) MRI", "D) X-ray"],
 	},
 	{
 		question: "OPD visits usually involve short-term care and follow-up.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False",
-		],
+		options: ["A) True", "B) False"],
 	},
-]
+];
 
 export const SW_QUESTIONS: QuestionOptionsType[] = [
 	{
@@ -297,12 +232,10 @@ export const SW_QUESTIONS: QuestionOptionsType[] = [
 		],
 	},
 	{
-		question: "A patient who has undergone surgery should remain in bed for at least a week.",
+		question:
+			"A patient who has undergone surgery should remain in bed for at least a week.",
 		answer: "B) False",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
 		question: "Which of the following is a sign of post-operative infection?",
@@ -311,56 +244,49 @@ export const SW_QUESTIONS: QuestionOptionsType[] = [
 			"A) Mild swelling",
 			"B) Redness with pus discharge",
 			"C) Low-grade fever for 24 hours",
-			"D) Slight pain at the incision site"
+			"D) Slight pain at the incision site",
 		],
 	},
 	{
-		question: "To prevent deep vein thrombosis (DVT) in post-op patients, nurses should encourage _______.",
+		question:
+			"To prevent deep vein thrombosis (DVT) in post-op patients, nurses should encourage _______.",
 		answer: "C) Early ambulation and leg exercises",
 		options: [
 			"A) Complete bed rest",
 			"B) Leg elevation without movement",
 			"C) Early ambulation and leg exercises",
-			"D) Ice pack application"
+			"D) Ice pack application",
 		],
 	},
 	{
-		question: "A Jackson-Pratt drain is used to remove fluids from a surgical site.",
+		question:
+			"A Jackson-Pratt drain is used to remove fluids from a surgical site.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False",
-		],
+		options: ["A) True", "B) False"],
 	},
-]
+];
 
 export const LR_QUESTIONS: QuestionOptionsType[] = [
 	{
 		question: "The most common site for venipuncture is the _______ vein.",
 		answer: "D) Median cubital",
-		options: [
-			"A) Radial",
-			"B) Cephalic",
-			"C) Basilic",
-			"D) Median cubital",
-		],
+		options: ["A) Radial", "B) Cephalic", "C) Basilic", "D) Median cubital"],
 	},
 	{
-		question: "A tourniquet should be left on the arm for more than 5 minutes to ensure proper blood collection.",
+		question:
+			"A tourniquet should be left on the arm for more than 5 minutes to ensure proper blood collection.",
 		answer: "B) False",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
-		question: "You are preparing to perform a venipuncture. Which of the following is the MOST important step to ensure patient safety and accurate results?",
+		question:
+			"You are preparing to perform a venipuncture. Which of the following is the MOST important step to ensure patient safety and accurate results?",
 		answer: "C) Properly identifying the patient and verifying the test order.",
 		options: [
 			"A) Using a large-gauge needle to speed up the process.",
 			"B) Ignoring the patient's report of previous difficult draws.",
 			"C) Properly identifying the patient and verifying the test order.",
-			"D) Wearing gloves only after the needle is inserted."
+			"D) Wearing gloves only after the needle is inserted.",
 		],
 	},
 	{
@@ -370,22 +296,21 @@ export const LR_QUESTIONS: QuestionOptionsType[] = [
 			"A) Lipid profile",
 			"B) Creatinine and BUN",
 			"C) ECG",
-			"D) Liver function test"
+			"D) Liver function test",
 		],
 	},
 	{
-		question: "A complete blood count (CBC) is used to assess overall health and detect a variety of disorders.",
+		question:
+			"A complete blood count (CBC) is used to assess overall health and detect a variety of disorders.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False",
-		],
+		options: ["A) True", "B) False"],
 	},
-]
+];
 
 export const MW_QUESTIONS: QuestionOptionsType[] = [
 	{
-		question: "The primary goal in managing pneumonia in the medical ward is _______.",
+		question:
+			"The primary goal in managing pneumonia in the medical ward is _______.",
 		answer: "B) Oxygenation and infection treatment",
 		options: [
 			"A) Pain control",
@@ -395,22 +320,16 @@ export const MW_QUESTIONS: QuestionOptionsType[] = [
 		],
 	},
 	{
-		question: "Patients with hypertension should be encouraged to eat high-sodium foods.",
+		question:
+			"Patients with hypertension should be encouraged to eat high-sodium foods.",
 		answer: "B) False",
-		options: [
-			"A) True",
-			"B) False"
-		],
+		options: ["A) True", "B) False"],
 	},
 	{
-		question: "The best position for a patient with difficulty breathing is__________.:",
+		question:
+			"The best position for a patient with difficulty breathing is__________.:",
 		answer: "C) Fowler’s",
-		options: [
-			"A) Supine",
-			"B) Prone",
-			"C) Fowler’s",
-			"D) Trendelenburg"
-		],
+		options: ["A) Supine", "B) Prone", "C) Fowler’s", "D) Trendelenburg"],
 	},
 	{
 		question: "The first-line treatment for a mild allergic reaction is?",
@@ -419,18 +338,16 @@ export const MW_QUESTIONS: QuestionOptionsType[] = [
 			"A) Epinephrine",
 			"B) Antihistamines",
 			"C) Oxygen therapy",
-			"D) Steroids"
+			"D) Steroids",
 		],
 	},
 	{
-		question: "Diabetes management includes diet, exercise, and medication adherence.",
+		question:
+			"Diabetes management includes diet, exercise, and medication adherence.",
 		answer: "A) True",
-		options: [
-			"A) True",
-			"B) False",
-		],
+		options: ["A) True", "B) False"],
 	},
-]
+];
 
 export const QUESTIONS: Record<Departments, QuestionOptionsType[]> = {
 	"Emergency Room": ER_QUESTIONS,

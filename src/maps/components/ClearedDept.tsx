@@ -1,11 +1,8 @@
 import { useState } from "react";
 import DisplayStar from "../../components/DisplayStar";
-import UnlockIcon from "../../components/UnlockIcon";
-import { DepartmentType } from "../../types";
+import { Departments, DepartmentType } from "../../types";
 import AlertModal from "../../components/AlertModal";
 import PromptModal from "./PromptModal";
-import { motion } from "framer-motion";
-import { twMerge } from "tailwind-merge";
 
 interface Props {
 	department: DepartmentType;
@@ -30,19 +27,11 @@ function ClearedDept({ department }: Props) {
 				onClick={onClick}
 			/>
 
-			{/* dotted line pointing to the next department */}
-			{/* <div className={`${department.lineClass} border-dashed`} /> */}
-
-			<motion.div
-				initial={{ scaleX: 0 }}
-				animate={{ scaleX: 1 }}
-				transition={{ duration: 3.5, ease: "easeInOut" }}
-				className={twMerge(
-					department.lineClass,
-					"border-dashed origin-left",
-				)}></motion.div>
-
-			<UnlockIcon fill="#00C950" width="20px" height="20px" />
+			<div className="text-white font-bold text-center text-sm w-6 h-6 bg-green-500 rounded-full border-white border-2">
+				{Object.keys(Departments).findIndex(
+					(dept) => dept === department.name,
+				) + 1}
+			</div>
 			<DisplayStar department={department.name} />
 			<p className="bg-green-500 text-white rounded-md px-2 hidden md:block">
 				<span>{department.name}</span>

@@ -23,7 +23,7 @@ function ActiveDept({ department, profile }: Props) {
 		<div
 			className={`${department.className} flex flex-col items-center md:space-y-1`}>
 			<div
-				className="bg-transparent z-10 w-full h-full absolute cursor-pointer"
+				className="bg-transparent z-[5] w-full h-full absolute cursor-pointer"
 				onClick={onClick}
 			/>
 			{/* Glowing Downward Arrow */}

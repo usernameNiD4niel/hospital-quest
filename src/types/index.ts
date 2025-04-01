@@ -32,10 +32,6 @@ export interface DepartmentType {
 	 * If true, means the user is currently at this stage.
 	 */
 	isActive: boolean;
-	/**
-	 * Line class pointing to the next department, this should be used when the current department is cleared.
-	 */
-	lineClass: string;
 }
 
 export interface ProfilesProps {

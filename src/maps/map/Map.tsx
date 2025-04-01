@@ -244,6 +244,11 @@ function Map() {
 	}
 
 	function handlePlayNext(res: QAResultType) {
+		if (department === Departments["Medical Ward"]) {
+			navigate("/maps?unlocked-suprised=true");
+			return;
+		}
+
 		if (res.canGoNext) {
 			const deptVals = Object.values(Departments);
 			const index = deptVals.indexOf(department);
@@ -254,6 +259,18 @@ function Map() {
 		} else {
 			reset();
 		}
+	}
+
+	function getButtonText(result: QAResultType) {
+		if (department === Departments["Medical Ward"]) {
+			return "Finish";
+		}
+
+		if (result.canGoNext) {
+			return "Play next";
+		}
+
+		return "Try again";
 	}
 
 	return (
@@ -337,7 +354,7 @@ function Map() {
 					))}
 					<div className="w-full flex justify-end items-center gap-2 mt-2 flex-col md:flex-row">
 						<Button
-							text={result.canGoNext ? "Play next" : "Try again"}
+							text={getButtonText(result)}
 							onClick={() => handlePlayNext(result)}
 						/>
 						<LinkButton to="/maps" variant="ghost">
