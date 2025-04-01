@@ -61,19 +61,19 @@ function AlertModal({
 				/>
 				<motion.div
 					className={twMerge(
-						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[90vh] bg-white overflow-y-auto z-50 flex flex-col p-4 relative",
+						"w-full max-w-xs sm:max-w-lg rounded-md h-fit max-h-[90vh] bg-white overflow-y-auto z-10 flex flex-col p-4 relative",
 						className,
 					)}
 					initial={{ opacity: 0, scale: 0.7 }}
 					animate={{ opacity: 1, scale: 1 }}
 					exit={{ opacity: 0, scale: 0.7 }}
 					transition={{ duration: 0.3, ease: "easeInOut" }}>
+					{children}
 					{closable && (
-						<div className="absolute top-4 right-4 hover:cursor-pointer">
+						<div className="absolute top-4 right-4 hover:cursor-pointer z-50">
 							<CloseIcon onClick={onClose} fill="#000" />
 						</div>
 					)}
-					{children}
 				</motion.div>
 			</div>
 		</AnimatePresence>
