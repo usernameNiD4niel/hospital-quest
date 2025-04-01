@@ -300,7 +300,7 @@ function Map() {
 							initial="enter"
 							animate="center"
 							exit="exit"
-							transition={{ duration: 0.5, ease: "easeInOut" }}
+							transition={{ duration: 0.3, ease: "easeInOut" }}
 							className="w-full h-full">
 							<QuizOption
 								quiz={QUESTIONS[department][question]}

@@ -17,7 +17,7 @@ const App = () => {
 		} else {
 			const prog = JSON.parse(progress) as ProgressType;
 
-			if (!prog.totalStars) {
+			if (!prog.totalStars || !prog.progress) {
 				localStorage.setItem("progress", JSON.stringify(PROGRESS)); // Since the user might played this game before the progress has been mutate.
 			}
 		}
