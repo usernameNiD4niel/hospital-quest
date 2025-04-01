@@ -132,7 +132,7 @@ function DisplaySettingsDialog({
 	};
 
 	return (
-		<div className="flex w-full items-center space-y-8 flex-col py-4 px-2">
+		<div className="flex w-full items-center space-y-8 flex-col py-4 px-2 z-50">
 			<div className="w-full flex items-center justify-center space-x-1 flex-col">
 				{getAvatar()}
 				<p className="capitalize font-semibold text-xl">{getName()}</p>
