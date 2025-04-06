@@ -253,7 +253,7 @@ function Map() {
 			const deptVals = Object.values(Departments);
 			const index = deptVals.indexOf(department);
 			const d = deptVals[index + 1]; // access the next department that the user currently playing.
-			const url = `/maps/${d}`;
+			const url = `/maps/${encodeURIComponent(d)}`;
 			reset();
 			navigate(url);
 		} else {
@@ -408,7 +408,7 @@ interface DisplayDepartmentProps {
 function DisplayDepartment({ department }: DisplayDepartmentProps) {
 	return (
 		<div className="w-full fixed top-0 px-4 left-0 right-0 py-4 flex items-center bg-gradient-to-br from-black z-20 justify-between">
-			<BackButton svgFill="#ffffff" className="text-white">
+			<BackButton svgFill="#ffffff" className="text-white" to="/maps">
 				Back
 			</BackButton>
 			<h2 className="text-white text-xl font-bold">{department}</h2>
