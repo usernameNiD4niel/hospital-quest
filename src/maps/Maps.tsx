@@ -6,6 +6,7 @@ import { CLOUD_IMAGES } from "../constants";
 import { getRandomValue } from "../utils";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import DisplaySurpriseModal from "./components/DisplaySurpriseModal";
 
 // Cloud Particle Component
 interface CloudParticleProps {
@@ -108,6 +109,8 @@ function Maps() {
 
 			{/* Show Coordinate */}
 			<Coordinate />
+
+			<DisplaySurpriseModal />
 
 			{/* Optional: Overlay to darken/tint the background */}
 			{/* <div className="fixed inset-0 bg-black opacity-10"></div> */}
