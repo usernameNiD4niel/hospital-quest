@@ -81,12 +81,9 @@ function PromptModal({ department, onClose }: Props) {
 					className="w-full text-center md:w-fit px-5 cursor-pointer bg-primary py-3 rounded-lg text-white text-sm">
 					Play
 				</LinkButton>
-				<Button
-					text="Cancel"
-					onClick={onClose}
-					className="md:w-fit px-5"
-					variant="ghost"
-				/>
+				<Button onClick={onClose} className="md:w-fit px-5" variant="ghost">
+					Cancel
+				</Button>
 			</div>
 		</Fragment>
 	);

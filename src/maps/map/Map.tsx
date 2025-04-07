@@ -245,7 +245,7 @@ function Map() {
 
 	function handlePlayNext(res: QAResultType) {
 		if (department === Departments["Medical Ward"]) {
-			navigate("/maps?unlocked-suprised=true");
+			navigate("/maps?unlocked-surprised=true");
 			return;
 		}
 
@@ -328,15 +328,12 @@ function Map() {
 					</AnimatePresence>
 					{/* <button className="fixed top-[49vh] right-1 text-white">Next</button> */}
 					<div className="w-full flex justify-between items-center max-w-xs md:max-w-lg px-4 space-x-4">
-						<Button
-							text="Previous"
-							onClick={handlePrev}
-							disabled={question === 0}
-						/>
-						<Button
-							text={question !== 4 ? "Next" : "Submit"}
-							onClick={handleNext}
-						/>
+						<Button onClick={handlePrev} disabled={question === 0}>
+							Previous
+						</Button>
+						<Button onClick={handleNext}>
+							{question !== 4 ? "Next" : "Submit"}
+						</Button>
 					</div>
 				</div>
 			</div>
@@ -353,10 +350,9 @@ function Map() {
 						<SubmitModal q={q} key={q.question} num={index + 1} />
 					))}
 					<div className="w-full flex justify-end items-center gap-2 mt-2 flex-col md:flex-row">
-						<Button
-							text={getButtonText(result)}
-							onClick={() => handlePlayNext(result)}
-						/>
+						<Button onClick={() => handlePlayNext(result)}>
+							{getButtonText(result)}
+						</Button>
 						<LinkButton to="/maps" variant="ghost">
 							Go back
 						</LinkButton>
@@ -370,7 +366,7 @@ function Map() {
 					className="p-10 py-7 overflow-y-auto flex flex-col space-y-4">
 					{getTitleNoResult()}
 					<div className="w-full flex justify-end items-center gap-2 mt-2 flex-col md:flex-row">
-						<Button text={"Try again"} onClick={() => reset()} />
+						<Button onClick={() => reset()}>Try again</Button>
 						{/* <Button variant="ghost" text="Go back" /> */}
 						<LinkButton to="/maps" variant="ghost">
 							Go back

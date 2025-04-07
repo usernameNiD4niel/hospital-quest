@@ -13,8 +13,12 @@ function BackgroundAudio() {
 	useEffect(() => {
 		const playAudio = () => {
 			const { current } = audioRef;
+			const isMuted = localStorage.getItem("is-muted");
 
 			if (current) {
+				if (isMuted && isMuted === "true") {
+					return; // do not allow user to play the audio.
+				}
 				current
 					.play()
 					.catch((error) => console.error("Playback error:", error));
@@ -56,6 +60,7 @@ function BackgroundAudio() {
 				<DisplaySettingsDialog
 					handleOnChange={handleOnChange}
 					setOpen={setOpen}
+					audioRef={audioRef}
 				/>
 			</AlertModal>
 		</div>
@@ -65,12 +70,21 @@ function BackgroundAudio() {
 interface DisplaySettingsDialogProps {
 	handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	setOpen: (value: boolean) => void;
+	audioRef: React.RefObject<HTMLAudioElement | null>;
 }
 
 function DisplaySettingsDialog({
 	handleOnChange,
 	setOpen,
+	audioRef,
 }: DisplaySettingsDialogProps) {
+	const [isMuted, setIsMuted] = useState(false);
+
+	useEffect(() => {
+		const isMuted_ = localStorage.getItem("is-muted");
+		setIsMuted(isMuted_ !== null && isMuted_ === "true");
+	}, []);
+
 	const getName = () => {
 		const name = localStorage.getItem("name") || "Anonymous User";
 		return name;
@@ -135,6 +149,20 @@ function DisplaySettingsDialog({
 		setOpen(false);
 	};
 
+	const handleMute = () => {
+		if (audioRef && audioRef.current) {
+			if (isMuted) {
+				localStorage.setItem("is-muted", "false");
+				audioRef.current.play();
+				setIsMuted(false);
+			} else {
+				localStorage.setItem("is-muted", "true");
+				audioRef.current.pause();
+				setIsMuted(true);
+			}
+		}
+	};
+
 	return (
 		<div className="flex w-full items-center space-y-8 flex-col py-4 px-2 z-50">
 			<div className="w-full flex items-center justify-center space-x-1 flex-col">
@@ -159,21 +187,50 @@ function DisplaySettingsDialog({
 						onChange={handleOnChange}
 					/>
 				</p>
+				<div className="w-full flex space-x-1 items-center px-2">
+					<p>Mute:</p>
+					<button className="hover:cursor-pointer" onClick={handleMute}>
+						{isMuted ? (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#fb2c36"
+								width="40px"
+								height="40px"
+								viewBox="0 0 1024 1024">
+								<path d="M542.86 294.4L362.3 430a10.72 10.72 0 0 0-2.71 3.25H255.53v153.2h104.06a10.58 10.58 0 0 0 2.71 3.25l180.56 135.52a10.83 10.83 0 0 0 17.34-8.66v-413.5a10.83 10.83 0 0 0-17.34-8.66zM742.6 599.41L765 577l-67.2-67.2 67.2-67.2-22.4-22.4-67.2 67.2-67.2-67.2-22.4 22.4 67.2 67.2-67.2 67.2 22.4 22.4 67.2-67.2 67.2 67.2z" />
+							</svg>
+						) : (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#000000"
+								width="20px"
+								height="20px"
+								viewBox="0 0 24 24">
+								<path
+									fill-rule="evenodd"
+									d="M11.553 3.064A.75.75 0 0112 3.75v16.5a.75.75 0 01-1.255.555L5.46 16H2.75A1.75 1.75 0 011 14.25v-4.5C1 8.784 1.784 8 2.75 8h2.71l5.285-4.805a.75.75 0 01.808-.13zM10.5 5.445l-4.245 3.86a.75.75 0 01-.505.195h-3a.25.25 0 00-.25.25v4.5c0 .138.112.25.25.25h3a.75.75 0 01.505.195l4.245 3.86V5.445z"
+								/>
+								<path d="M18.718 4.222a.75.75 0 011.06 0c4.296 4.296 4.296 11.26 0 15.556a.75.75 0 01-1.06-1.06 9.5 9.5 0 000-13.436.75.75 0 010-1.06z" />
+								<path d="M16.243 7.757a.75.75 0 10-1.061 1.061 4.5 4.5 0 010 6.364.75.75 0 001.06 1.06 6 6 0 000-8.485z" />
+							</svg>
+						)}
+					</button>
+				</div>
 			</div>
 
 			<div className="w-full flex justify-end items-center flex-col md:flex-row gap-2">
 				<Button
 					variant="destructive"
 					className="w-full md:w-fit px-4"
-					text="ResetAccount"
-					onClick={handleResetAccount}
-				/>
+					onClick={handleResetAccount}>
+					ResetAccount
+				</Button>
 				<Button
 					variant="ghost"
-					text="Cancel"
 					className="w-full md:w-fit px-4"
-					onClick={handleCancel}
-				/>
+					onClick={handleCancel}>
+					Cancel
+				</Button>
 			</div>
 		</div>
 	);

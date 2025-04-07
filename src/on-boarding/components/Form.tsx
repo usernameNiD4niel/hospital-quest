@@ -42,7 +42,7 @@ function Form() {
 				name="name"
 				className="w-full border rounded-lg outline-0 p-3 border-[var(--primary-color)] focus:bg-[var(--primary-color)]/20 focus:border-[var(--primary-color)] text-sm"
 			/>
-			<Button type="submit" />
+			<Button type="submit">Let&apos;s go!</Button>
 		</form>
 	);
 }
