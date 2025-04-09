@@ -1,0 +1,33 @@
+{
+    "progress": [
+        {
+            "department": "Emergency Room",
+            "stars": 5
+        },
+        {
+            "department": "Delivery Room/Obgyne",
+            "stars": 5
+        },
+        {
+            "department": "Operating Room",
+            "stars": 5
+        },
+        {
+            "department": "Out-patient Department",
+            "stars": 5
+        },
+        {
+            "department": "Surgical Wards",
+            "stars": 5
+        },
+        {
+            "department": "Laboratory",
+            "stars": 5
+        },
+        {
+            "department": "Medical Ward",
+            "stars": 5
+        }
+    ],
+    "totalStars": 35
+}
