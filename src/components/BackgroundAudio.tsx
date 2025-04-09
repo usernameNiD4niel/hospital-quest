@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import AlertModal from "./AlertModal";
 import { profiles } from "../constants";
-import { ProgressType } from "../types";
+import { Departments, ProgressType } from "../types";
 import Button from "./Button";
 import DisplaySettings from "./DisplaySettings";
 
@@ -113,21 +113,25 @@ function DisplaySettingsDialog({
 				(prog) => prog.department === curDept,
 			);
 
-			if (deptIndex === -1) {
+			if (!stats.progress || stats.progress.length !== 7) {
 				return null;
 			}
+
+			const ts = stats.totalStars;
+			const currentDept = stats.currentDepartment || Departments["Medical Ward"];
+			const stars = deptIndex === -1 ? stats.progress[6].stars : stats.progress[deptIndex].stars;
 
 			return (
 				<div className="w-full px-2">
 					<p>
-						Gained Stars: <span className="underline">{stats.totalStars}</span>
+						Gained Stars: <span className="underline">{ts}</span>
 					</p>
 					<p>
-						Current Department: <span className="underline">{curDept}</span>
+						Current Department: <span className="underline">{currentDept}</span>
 					</p>
 					<p>
 						Stars Gained to {curDept}:{" "}
-						<span className="underline">{stats.progress[deptIndex].stars}</span>
+						<span className="underline">{stars}</span>
 					</p>
 				</div>
 			);
