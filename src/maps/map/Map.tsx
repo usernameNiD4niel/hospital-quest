@@ -124,7 +124,6 @@ function Map() {
 				const deptIndex = progress.progress.findIndex(
 					(prog) => prog.department === department,
 				); // if the current question answered the question correctly before.
-				console.log("dept index", JSON.stringify(deptIndex, null, 2));
 
 				let ts = progress.totalStars;
 
@@ -137,6 +136,13 @@ function Map() {
 					progress.progress[deptIndex].stars += diff;
 					ts += diff;
 					progress.totalStars = ts;
+
+					if (
+						diff > 0 &&
+						progress.progress[progress.progress.length - 1].stars > 0
+					) {
+						localStorage.setItem("unlock-surprise", "false");
+					}
 				} else {
 					// First time playing this department
 					progress.progress.push({
@@ -147,7 +153,17 @@ function Map() {
 				}
 
 				const deptReqStars = DEPARTMENT_LEVEL[progress.currentDepartment];
-				const currDept = progress.currentDepartment;
+				let currDept = progress.currentDepartment;
+
+				if (!currDept) {
+					for (let i = progress.progress.length - 1; i >= 0; --i) {
+						if (progress.progress[i].stars !== 0) {
+							currDept = progress.progress[i].department;
+							progress.currentDepartment = currDept;
+							break;
+						}
+					}
+				}
 
 				/**
 				 * We do this even though the user already unlocked the department that they are playing, we don't know if they've perfectly answered the question.
@@ -245,8 +261,18 @@ function Map() {
 
 	function handlePlayNext(res: QAResultType) {
 		if (department === Departments["Medical Ward"]) {
-			navigate("/maps?unlocked-surprised=true");
-			return;
+			const prog = localStorage.getItem("progress");
+			if (prog) {
+				const progress = JSON.parse(prog) as ProgressType;
+				if (progress.totalStars >= 28) {
+					localStorage.setItem("unlock-surprise", "false");
+					navigate("/maps?unlocked-surprised=true");
+					return;
+				} else {
+					navigate("/maps");
+					return;
+				}
+			}
 		}
 
 		if (res.canGoNext) {

@@ -21,8 +21,6 @@ function Form() {
 		localStorage.setItem("name", name);
 		localStorage.setItem("currentIndex", currentIndex);
 
-		console.log(to);
-
 		if (to) {
 			navigate(decodeURIComponent(to));
 			return;

@@ -27,7 +27,7 @@ function Coordinate() {
 				);
 				if (deptIndex !== -1) {
 					const dept = progress.progress[deptIndex];
-					MAPS[i].isActive = progress.currentDepartment === MAPS[i].name; // if true, then this department is is highest dept user can play as of now.
+					MAPS[i].isActive = progress.currentDepartment === MAPS[i].name; // if true, then this department is the highest dept user can play as of now.
 					MAPS[i].isCleared = dept.stars >= 4;
 				}
 			}

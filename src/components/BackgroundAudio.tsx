@@ -118,8 +118,12 @@ function DisplaySettingsDialog({
 			}
 
 			const ts = stats.totalStars;
-			const currentDept = stats.currentDepartment || Departments["Medical Ward"];
-			const stars = deptIndex === -1 ? stats.progress[6].stars : stats.progress[deptIndex].stars;
+			const currentDept =
+				stats.currentDepartment || Departments["Medical Ward"];
+			const stars =
+				deptIndex === -1
+					? stats.progress[6].stars
+					: stats.progress[deptIndex].stars;
 
 			return (
 				<div className="w-full px-2">

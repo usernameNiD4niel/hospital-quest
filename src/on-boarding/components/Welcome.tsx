@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { profiles } from "../../constants";
-import { ProgressType } from "../../types";
 
 interface Props {
 	name: string;
@@ -11,16 +10,12 @@ interface Props {
 function Welcome({ currentIndex, name }: Props) {
 	const navigate = useNavigate();
 	const profile = profiles[Number(currentIndex)];
-	const prog = localStorage.getItem("progress");
+	const unlockSurprise = localStorage.getItem("unlock-surprise");
 
 	function onContinue() {
-		if (prog) {
-			const progress = JSON.parse(prog) as ProgressType;
-
-			if (progress.totalStars === 35) {
-				navigate("/maps?unlocked-surprised=true");
-				return;
-			}
+		if (unlockSurprise && unlockSurprise === "false") {
+			navigate("/maps?unlocked-surprised=true");
+			return;
 		}
 
 		navigate("/maps");
